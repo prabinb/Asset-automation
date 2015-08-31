@@ -1,5 +1,62 @@
 <template name="securityHome">
-  <p>
-    Security Home Page
-  </p>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">Asset from Vendor</a></li>
+      <li role="presentation" class="active"><a href="#">Asset from Employee</a></li>
+      <li role="presentation" class="active"><a href="#">Give To Employee</a></li>
+      <li role="presentation" class="active"><a href="#">Move to other Location</a></li>
+    </ul>
+    <div class="container-fluid">
+      <div class="row">
+        <div id="custom-search-input">
+                  <div class="input-group col-md-4" style="margin-top:1%;margin-left:1%">
+                      <input class="form-control input-sm " id="searchPO" placeholder="Search PO" type="text">
+                      <span class="input-group-btn">
+                          <button class="btn btn-info btn-sm search-po" type="button">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </span>
+                  </div>
+              </div>
+        <table class="table"  style="margin-top:4%;margin-left:4%">
+          {{#if showPO}}
+          <thead>
+          {{#each headers}}
+          {{> poHeader}}
+          {{/each}}
+        </thead>
+          <tbody>
+            <tr>
+              {{#each items}}
+              {{> poItem}}
+              {{/each}}
+            </tr>
+          </tbody>
+          {{/if}}
+        </table>
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2" style="margin-top:5%">
+          {{#if addToAsset}}
+          <form >
+            <label class="">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline" type="text">
+            <label class="">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline" type="text">
+            <button type="button" class="add-new-item">Add</button>
+          </form>
+          {{/if}}
+        </div>
+
+        <table class="table col-lg-8 col-lg-offset-1 ">
+          {{#if newItemAdded}}
+          <thead>
+            <th>S No.</th>  <th>Description</th>  <th>Serial No.</th>  <th>Delivery Challan</th>
+          </thead>
+          <tbody>
+
+              {{#each newItems}}
+              {{> newItem}}
+              {{/each}}
+
+          </tbody>
+          {{/if}}
+        </table>
+      </div>
+    </div>
 </template>
