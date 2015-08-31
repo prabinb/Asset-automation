@@ -1,5 +1,24 @@
 <template name="adminHome">
-  <p>
-    Admin Home Page
-  </p>
+   <ul class="nav nav-tabs">
+    {{#each tabs}}
+      <li role="presentation"><a href="{{url}}" data-toggle="tab">{{header}}</a></li>
+    {{/each}}
+  </ul>
+  <div class="tab-content">
+	    <div class="tab-pane" id="stockTab">
+	      {{> stock}}
+	    </div>
+      <div class="tab-pane" id="verifyAssetTab">
+	      {{> verifyAsset}}
+	    </div>
+      <div class="tab-pane" id="verifyAssetAllocationTab">
+        {{> verifyAssetAllocation}}
+      </div>
+      <div class="tab-pane" id="assetUsageTab">
+        {{> assetUsage}}
+      </div>
+      <div class="tab-pane" id="decomissionAssetTab">
+        {{> decomissionAsset}}
+      </div>
+  </div>
 </template>
