@@ -9,21 +9,6 @@ if (Meteor.isClient) {
   });
 
   Template.assetFromVendor.helpers({
-    "headers": function () {
-
-      var arr = [];
-
-      arr.push({"headerTitle":"PO"});
-      arr.push({"headerTitle":"Supplier"});
-      arr.push({"headerTitle":"Type"});
-      arr.push({"headerTitle":"Make"});
-      arr.push({"headerTitle":"Model"});
-      arr.push({"headerTitle":"Quantity"});
-      arr.push({"headerTitle":"Remaining Quantity"});
-      arr.push({"headerTitle":"Action"});
-      return arr;
-
-    },
     "items":function(){
       return [{
         "poNumber":"14542",
