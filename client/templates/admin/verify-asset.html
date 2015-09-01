@@ -1,6 +1,9 @@
 <template name="verifyAsset">
-<div class="container-fluid data-grid">
+<div id="verify-asset-assets" class="container-fluid data-grid">
   <div class="row data-grid-header">
+    <div class="data-grid-checkbox data-grid-column">
+      <input type="checkbox" id="header-checkbox" value="">
+    </div>
     <div class="col-md-1 data-grid-column">Sr No.</div>
     <div class="col-md-2 data-grid-column">PO Number</div>
     <div class="col-md-2 data-grid-column">Supplier</div>
@@ -10,6 +13,9 @@
   </div>
   {{#each assets}}
   <div class="row data-grid-row">
+    <div class="data-grid-checkbox data-grid-column">
+      <input type="checkbox" name="name" value="">
+    </div>
     <div class="col-md-1 data-grid-column">{{srno}}</div>
     <div class="col-md-2 data-grid-column">{{ponumber}}</div>
     <div class="col-md-2 data-grid-column">{{supplier}}</div>
@@ -18,5 +24,9 @@
     <div class="col-md-2 data-grid-column">{{description}}</div>
   </div>
   {{/each}}
+</div>
+
+<div class="text-align-center marginT15">
+<button type="button" class="btn btn-primary">Verify Assets</button>
 </div>
 </template>

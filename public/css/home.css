@@ -7,6 +7,12 @@
   margin-left: 15px;
 }
 
+.marginT15{
+  margin-top: 15px;
+}
+.text-align-center{
+  text-align: center;
+}
 /* data grid css */
 .data-grid{
 
@@ -27,6 +33,14 @@
 }
 .data-grid-column:last-child{
   border-right: 1px solid lightgray;
+}
+.data-grid-checkbox{
+    float: left;
+    padding: .2% 2%;
+}
+.data-grid-checkbox input[type="checkbox"]{
+  height: 20px;
+  width: 20px;
 }
 
 /* end data grid css*/

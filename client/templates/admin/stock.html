@@ -1,5 +1,31 @@
 <template name="stock">
-  <p>
-    Stock in hand
-  </p>
+  <div id="stock-assets" class="container-fluid data-grid">
+    <div class="row data-grid-header">
+      <div class="col-md-1 data-grid-column">Type</div>
+      <div class="col-md-1 data-grid-column">Make</div>
+      <div class="col-md-1 data-grid-column">Model</div>
+      <div class="col-md-1 data-grid-column">Serial Number</div>
+      <div class="col-md-1 data-grid-column">OEM/NonOEM </div>
+      <div class="col-md-1 data-grid-column">OS(Live)</div>
+      <div class="col-md-1 data-grid-column">CPU(MHz)</div>
+      <div class="col-md-2 data-grid-column">CPU Type</div>
+      <div class="col-md-1 data-grid-column">Memory</div>
+      <div class="col-md-1 data-grid-column">Disk Size(MB)</div>
+    </div>
+    {{#each assets}}
+    <div class="row data-grid-row">
+      <div class="col-md-1 data-grid-column">{{type}}</div>
+      <div class="col-md-1 data-grid-column">{{make}}</div>
+      <div class="col-md-1 data-grid-column">{{model}}</div>
+      <div class="col-md-1 data-grid-column">{{serialno}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.oem}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.os}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.cpu}}</div>
+      <div class="col-md-2 data-grid-column">{{assetdetails.cputype}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.memory}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.disk}}</div>
+    </div>
+    {{/each}}
+  </div>
+
 </template>
