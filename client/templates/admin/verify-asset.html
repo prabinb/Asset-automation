@@ -1,5 +1,22 @@
 <template name="verifyAsset">
-<p>
-  verify asset
-</p>
+<div class="container-fluid data-grid">
+  <div class="row data-grid-header">
+    <div class="col-md-1 data-grid-column">Sr No.</div>
+    <div class="col-md-2 data-grid-column">PO Number</div>
+    <div class="col-md-2 data-grid-column">Supplier</div>
+    <div class="col-md-2 data-grid-column">Device Serial Number</div>
+    <div class="col-md-2 data-grid-column">Delivery Challan</div>
+    <div class="col-md-2 data-grid-column">Description</div>
+  </div>
+  {{#each assets}}
+  <div class="row data-grid-row">
+    <div class="col-md-1 data-grid-column">{{srno}}</div>
+    <div class="col-md-2 data-grid-column">{{ponumber}}</div>
+    <div class="col-md-2 data-grid-column">{{supplier}}</div>
+    <div class="col-md-2 data-grid-column">{{serialno}}</div>
+    <div class="col-md-2 data-grid-column">{{deliverychallan}}</div>
+    <div class="col-md-2 data-grid-column">{{description}}</div>
+  </div>
+  {{/each}}
+</div>
 </template>

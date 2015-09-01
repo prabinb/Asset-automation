@@ -1,0 +1,32 @@
+/* common css */
+.marginB15{
+  margin-bottom: 15px;
+}
+
+.marginL15{
+  margin-left: 15px;
+}
+
+/* data grid css */
+.data-grid{
+
+}
+
+.data-grid-header{
+  font-weight: 600;
+}
+
+.data-grid-column{
+  padding: 0.5%;
+  border-top: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+}
+
+.data-grid-row:last-child .data-grid-column, .data-grid-header:last-child .data-grid-column{
+  border-bottom: 1px solid lightgray;
+}
+.data-grid-column:last-child{
+  border-right: 1px solid lightgray;
+}
+
+/* end data grid css*/
