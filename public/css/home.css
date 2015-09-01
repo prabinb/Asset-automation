@@ -19,17 +19,23 @@
 }
 /* data grid css */
 .data-grid{
-
+  display: table;
+  width: 100%;
 }
 
 .data-grid-header{
   font-weight: 600;
 }
 
+.data-grid-header, .data-grid-row{
+  display: table-row;
+}
 .data-grid-column{
   padding: 0.5%;
   border-top: 1px solid lightgray;
   border-left: 1px solid lightgray;
+  display: table-cell;
+  float: none;
 }
 
 .data-grid-row:last-child .data-grid-column, .data-grid-header:last-child .data-grid-column{
@@ -39,7 +45,6 @@
   border-right: 1px solid lightgray;
 }
 .data-grid-checkbox{
-    float: left;
     padding: .2% 2%;
 }
 .data-grid-checkbox input[type="checkbox"]{
