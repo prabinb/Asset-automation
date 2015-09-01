@@ -2,55 +2,62 @@
   <div class="container-fluid">
     <div class="row">
       <div id="custom-search-input">
-                <div class="input-group col-md-4" style="margin-top:1%;margin-left:1%">
-                    <input class="form-control input-sm " id="searchPO" placeholder="Search PO" type="text">
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-sm search-po" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-      <table class="table"  style="margin-top:4%;margin-left:4%">
+        <div class="input-group col-md-4" style="margin-top:1%;margin-left:1%">
+          <input class="form-control input-sm " id="searchPO" placeholder="Search PO" type="text">
+            <span class="input-group-btn">
+              <button class="btn btn-info btn-sm search-po" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </div>
+      <div class="data-grid container-fluid marginT4per">
         {{#if showPO}}
-        <thead>
-        {{#each headers}}
-        {{> poHeader}}
-        {{/each}}
-      </thead>
-        <tbody>
-          <tr>
+        <div class="row data-grid-header">
+          <div class="col-md-1 data-grid-column">PO</div>
+          <div class="col-md-2 data-grid-column">Supplier</div>
+          <div class="col-md-1 data-grid-column">Type</div>
+          <div class="col-md-2 data-grid-column">Make</div>
+          <div class="col-md-2 data-grid-column">Model</div>
+          <div class="col-md-1 data-grid-column">Quantity</div>
+          <div class="col-md-1 data-grid-column">Remaining</div>
+          <div class="col-md-2 data-grid-column">Action</div>
+        </div>
+        <div class="data-grid">
+          <div class="row data-grid-row">
             {{#each items}}
             {{> poItem}}
             {{/each}}
-          </tr>
-        </tbody>
-        {{/if}}
-      </table>
-      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2" style="margin-top:5%">
-        {{#if addToAsset}}
-        <form >
-          <label class="">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline" type="text">
-          <label class="">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline" type="text">
-          <button type="button" class="add-new-item">Add</button>
-        </form>
+          </div>
+        </div>
         {{/if}}
       </div>
-
-      <table class="table col-lg-8 col-lg-offset-1 ">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2" style="margin-top:5%">
+          {{#if addToAsset}}
+          <form >
+            <label class="">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline" type="text">
+            <label class="">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline" type="text">
+            <button type="button" class="add-new-item">Add</button>
+          </form>
+          {{/if}}
+        </div>
+      </div>
+      <div class="data-grid container-fluid marginT4per col-md-offset-2">
         {{#if newItemAdded}}
-        <thead>
-          <th>S No.</th>  <th>Description</th>  <th>Serial No.</th>  <th>Delivery Challan</th>
-        </thead>
-        <tbody>
-
+          <div class="row data-grid-header">
+            <div class="col-md-2 data-grid-column">S No.</div>
+            <div class="col-md-2 data-grid-column">Description</div>
+            <div class="col-md-2 data-grid-column">Serial No.</div>
+            <div class="col-md-2 data-grid-column">Delivery Challan</div>
+          </div>
+          <div class="data-grid">
             {{#each newItems}}
-            {{> newItem}}
+              {{> newItem}}
             {{/each}}
-
-        </tbody>
+          </div>
         {{/if}}
-      </table>
+      </div>
     </div>
   </div>
 </template>

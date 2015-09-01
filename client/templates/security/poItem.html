@@ -1,10 +1,10 @@
 <template name="poItem">
-    <td>{{poNumber}}</td>
-    <td>{{supplier}}</td>
-    <td>{{type}}</td>
-    <td>{{make}}</td>
-    <td>{{model}}</td>
-    <td>{{quantity}}</td>
-    <td>{{remainingQuanity}}</td>
-    <td><button type="button" class="btn-success add-to-asset">{{action}}</button></td>
+    <div class="col-md-1 data-grid-column">{{poNumber}}</div>
+    <div class="col-md-2 data-grid-column">{{supplier}}</div>
+    <div class="col-md-1 data-grid-column">{{type}}</div>
+    <div class="col-md-2 data-grid-column">{{make}}</div>
+    <div class="col-md-2 data-grid-column">{{model}}</div>
+    <div class="col-md-1 data-grid-column">{{quantity}}</div>
+    <div class="col-md-1 data-grid-column">{{remainingQuanity}}</div>
+    <div class="col-md-2 data-grid-column"><button type="button" class="btn-success add-to-asset">{{action}}</button></div>
 </template>
