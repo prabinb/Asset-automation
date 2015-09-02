@@ -1,0 +1,107 @@
+body
+{
+	background-image: url("login/image.jpg");
+}
+.main-heading
+{
+	 font-family: courier;
+	text-align: center;
+	font-size:100px;
+	margin-top: 40px;
+}
+.inner-body
+{
+	
+	
+	border: black dashed 4px;
+	height: 250px;
+	width: 500px;
+	margin-left: 350px;
+	margin-top: 150px;
+	border-radius: 20px;
+	
+}
+.inner-heading
+{
+
+	height: 100px;
+}
+.lock-image
+{
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 60px;
+}
+.login-heading
+{
+	display: inline-block;
+	font-size: 30px;
+    vertical-align: top;
+    margin-top: 50px;
+    margin-left: 80px;
+}
+.mailid
+{
+	margin-left: 190px;
+
+	
+
+}
+.mailid input,.password input
+{
+border-radius: 20px;
+height: 25px;
+width: 250px;
+vertical-align: top;
+text-align: center;
+
+}
+
+.password
+{
+	margin-left: 190px;
+	border-radius: 20px;
+}
+.submit
+{
+	margin-left: 365px;
+	margin-top: 5px;
+	border-radius: 20px;
+	height: 30px;
+	padding-left: 20px;
+	width: 55px;
+	padding-top: 10px;
+	
+}
+.submit button
+{
+	background-color: #00008B;
+	border-radius:15px;
+	font-size: 15	px;
+	color: white;
+	padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
