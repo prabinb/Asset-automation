@@ -1,5 +1,47 @@
 <template name="verifyAssetAllocation">
-<p>
-  verify asset allocation
-</p>
+  <div id="asset-allocation-assets" class="container-fluid data-grid">
+    <div class="row data-grid-header">
+      <div class="data-grid-checkbox data-grid-column">
+        <input type="checkbox" id="header-checkbox" value="">
+      </div>
+      <div class="col-md-1 data-grid-column">Type</div>
+      <div class="col-md-1 data-grid-column">Make</div>
+      <div class="col-md-1 data-grid-column">Model</div>
+      <div class="col-md-1 data-grid-column">Serial Number</div>
+      <div class="col-md-1 data-grid-column">OEM/NonOEM </div>
+      <div class="col-md-1 data-grid-column">OS(Live)</div>
+      <div class="col-md-1 data-grid-column">CPU(MHz)</div>
+      <div class="col-md-2 data-grid-column">CPU Type</div>
+      <div class="col-md-1 data-grid-column">Memory</div>
+      <div class="col-md-1 data-grid-column">Disk Size(MB)</div>
+      <div class="col-md-1 data-grid-column">Mail Id</div>
+      <div class="col-md-1 data-grid-column">Project</div>
+      <div class="col-md-1 data-grid-column">Manager</div>
+      <div class="col-md-1 data-grid-column">Action</div>
+    </div>
+    {{#each assets}}
+    <div class="row data-grid-row">
+      <div class="data-grid-checkbox data-grid-column">
+        <input type="checkbox" name="name" value="">
+      </div>
+      <div class="col-md-1 data-grid-column">{{type}}</div>
+      <div class="col-md-1 data-grid-column">{{make}}</div>
+      <div class="col-md-1 data-grid-column">{{model}}</div>
+      <div class="col-md-1 data-grid-column">{{serialno}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.oem}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.os}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.cpu}}</div>
+      <div class="col-md-2 data-grid-column">{{assetdetails.cputype}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.memory}}</div>
+      <div class="col-md-1 data-grid-column">{{assetdetails.disk}}</div>
+      <div class="col-md-1 data-grid-column">{{emailid}}</div>
+      <div class="col-md-1 data-grid-column">{{project}}</div>
+      <div class="col-md-1 data-grid-column">{{manager}}</div>
+      <div class="col-md-1 data-grid-column"><button type="button" class="btn btn-link">Edit</button></div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="text-align-center marginT15">
+  <button type="button" class="btn btn-primary">Verify Allocation</button>
+  </div>
 </template>
