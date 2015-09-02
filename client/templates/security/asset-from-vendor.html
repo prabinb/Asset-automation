@@ -23,13 +23,13 @@
           <div class="col-md-1 data-grid-column">Remaining</div>
           <div class="col-md-2 data-grid-column">Action</div>
         </div>
-        <div class="data-grid">
+
           <div class="row data-grid-row">
             {{#each items}}
             {{> poItem}}
             {{/each}}
           </div>
-        </div>
+
         {{/if}}
       </div>
       <div class="row">
@@ -51,11 +51,11 @@
             <div class="col-md-2 data-grid-column">Serial No.</div>
             <div class="col-md-2 data-grid-column">Delivery Challan</div>
           </div>
-          <div class="data-grid">
+
             {{#each newItems}}
               {{> newItem}}
             {{/each}}
-          </div>
+        
         {{/if}}
       </div>
     </div>
