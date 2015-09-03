@@ -25,7 +25,7 @@ Template.verifyAsset.helpers({
   }]
 });
 
-Template.verifyAsset.events = {
+Template.verifyAsset.events({
   "change #header-checkbox": function(event){
         var headerCheckbox = event.target;
         var checkboxes = document.getElementById("verify-asset-assets").querySelectorAll(".data-grid-row .data-grid-checkbox input[type='checkbox']");
@@ -34,4 +34,4 @@ Template.verifyAsset.events = {
           checkboxes[index].checked = checkProperty;
         }
   }
-};
+});

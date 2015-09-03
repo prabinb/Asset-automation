@@ -20,7 +20,7 @@
 /* data grid css */
 .data-grid{
   display: table;
-  width: 100%;
+  width: calc(100% - 90px);
 }
 
 .data-grid-header{

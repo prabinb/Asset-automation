@@ -12,7 +12,7 @@ Template.assetUsage.helpers({
       "memory": "8192",
       "disk": " 476937"
     },
-    "emailid": "dhavalsinh.zala@imagine.com",
+    "emailid": "dhavalsinh.zala@imaginea.com",
     "project": "IT",
     "manager": "dominic"
   },
@@ -29,7 +29,7 @@ Template.assetUsage.helpers({
       "memory": "8192",
       "disk": " 476937"
     },
-    "emailid": "chandan.jha@imagine.com",
+    "emailid": "chandan.jha@imaginea.com",
     "project": "IT",
     "manager": "dominic"
   }]

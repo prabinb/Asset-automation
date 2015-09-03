@@ -1,10 +1,9 @@
 <template name="layout">
     <nav style="background-color: #abcdef" class="marginB15">
       <img class="navbar-btn" src="/image/pramati-logo.png" style="width:150px;margin-left:1%">
-      <div class="nav navbar-right" style="margin-right:0%">
-      <label >Welcome Chandan</label>
-      <button class="btn-default">Logout</button>
-    </div>
+      <div class="marginL15 marginT15">
+        {{> loginButtons}}
+      </div>
     </nav>
     <div class="marginL15">
       {{> yield}}
