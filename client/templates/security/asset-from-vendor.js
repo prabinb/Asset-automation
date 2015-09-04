@@ -45,11 +45,21 @@ if (Meteor.isClient) {
     "newItemAdded": function(){
       console.log(Session.get('newItemAdded'));
       return Session.get('newItemAdded');
+    },
+    "suggestions": function(){
+      return Session.get("suggestions");
     }
 
   });
 
-Template.securityHome.events({
+Template.assetFromVendor.events({
+  "keyup #searchPO": function(event){
+    var val = $("#searchPO").val();
+
+    Meteor.call("searchPO",val,function(error,result){
+      Session.set("suggestions",result);
+    });
+  },
   "click .search-po" : function(event){
     var value = $("#searchPO").val();
 
@@ -77,6 +87,9 @@ Template.securityHome.events({
     Session.set("newItemAdded", true);
 
 
+  },
+  "click .suggestedPO": function(event){
+    $("#searchPO").val(event.target.getAttribute('id'));
   }
 });
 

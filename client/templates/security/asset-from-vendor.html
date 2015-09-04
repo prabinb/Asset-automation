@@ -4,11 +4,19 @@
       <div id="custom-search-input">
         <div class="input-group col-md-4" style="margin-top:1%;margin-left:1%">
           <input class="form-control input-sm " id="searchPO" placeholder="Search PO" type="text">
+
             <span class="input-group-btn">
               <button class="btn btn-info btn-sm search-po" type="button">
                 <i class="fa fa-search"></i>
               </button>
             </span>
+            <ul style="list-style:none">
+              {{#each suggestions}}
+              <li>
+                <a class="suggestedPO" id="{{ponumber}}">{{ponumber}}</a>
+              </li>
+              {{/each}}
+            </ul>
         </div>
       </div>
       <div class="data-grid container-fluid marginT4per">
@@ -55,7 +63,7 @@
             {{#each newItems}}
               {{> newItem}}
             {{/each}}
-        
+
         {{/if}}
       </div>
     </div>

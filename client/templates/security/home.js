@@ -21,7 +21,12 @@ if (Meteor.isClient) {
     },{
       header: "Move to other location",
       url: "#moveToOtherLocationTab"
-    }]});
+    },
+    {
+      header: "Procurement Order",
+      url: "#procurementOrder"
+    }
+  ]});
 
 Template.poItem.events({
   "click .add-to-asset": function(){
