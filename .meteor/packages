@@ -10,3 +10,4 @@ iron:router@0.9.4
 accounts-ui
 accounts-password
 bootstrap
+reactive-var
