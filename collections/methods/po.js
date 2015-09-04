@@ -32,13 +32,30 @@ Meteor.methods({
 
     return result;
   },
-  getPO: function(){
+  getAllPO: function(){
     console.log(ProcurementOrder.find({}));
   },
   getPOCount: function(){
     var count = ProcurementOrder.count();
     console.log(count);
     return count;
+  },
+  getByPOnumber: function(ponumber){
+    var result = [];
+    ProcurementOrder
+    .find({"ponumber":ponumber})
+    .forEach(function(item){
+      result.push({
+        "ponumber": item.ponumber,
+        "supplier": item.supplier,
+        "type": item.type,
+        "make": item.make,
+        "model": item.model,
+        "qty": item.qty
+      });
+    });
+
+    return result;
   }
 });
 

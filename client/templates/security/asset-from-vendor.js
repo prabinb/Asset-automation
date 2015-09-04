@@ -10,16 +10,7 @@ if (Meteor.isClient) {
 
   Template.assetFromVendor.helpers({
     "items":function(){
-      return [{
-        "poNumber":"14542",
-        "supplier":"DD ComputerLand",
-        "type": "Laptop",
-        "make": "Dell",
-        "model": "Latitude 3450",
-        "quantity": "10",
-        "remainingQuanity": "3",
-        "action": "Add to Asset"
-      }];
+      return Session.get("items");
     },
     "newItems": function(){
       return [{
@@ -63,11 +54,11 @@ Template.assetFromVendor.events({
   "click .search-po" : function(event){
     var value = $("#searchPO").val();
 
-    if(value === "14542"){
-      console.log(Session.get("showPOItem"));
+    Meteor.call("getByPOnumber",value,function(error, result){
       Session.set('showPOItem',true);
-    }
-
+      Session.set("items",result);
+    });
+    
   },
   "click .add-new-item" : function(event){
 
