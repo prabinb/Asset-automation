@@ -1,92 +1,79 @@
-var items = new Mongo.Collection(null);
-
 if (Meteor.isClient) {
 
-  Meteor.startup(function () {
-    Session.set('showPOItem',false);
-    Session.set('addToAsset',false);
-    Session.set('newItemAdded',false);
+  Template.assetFromVendor.onCreated(function() {
+    this.items = new ReactiveVar([]);
+    this.newItems = new ReactiveVar([]);
+    this.showPOItem = new ReactiveVar(false);
+    this.addToAsset = new ReactiveVar(false);
+    this.newItemAdded = new ReactiveVar(false);
+    this.suggestions = new ReactiveVar([]);
   });
 
   Template.assetFromVendor.helpers({
     "items":function(){
-      return Session.get("items");
+      return Template.instance().items.get();
     },
     "newItems": function(){
-      return [{
-        "sNo":"1",
-        "Description":"Dell Latitude 3450",
-        "serialNo":"LAP001",
-        "deliveryChallan":"1001"
-      },{
-        "sNo":"2",
-        "Description":"Dell Latitude 3450",
-        "serialNo":"LAP002",
-        "deliveryChallan":"1002"
-      }];
+      return Template.instance().newItems.get();
     },
     "showPO": function(){
-      console.log(Session.get('showPOItem'));
-      return Session.get('showPOItem');
+      return Template.instance().showPOItem.get();
     },
     "addToAsset": function(){
-      console.log(Session.get('addToAsset'));
-      return Session.get('addToAsset');
+      return Template.instance().addToAsset.get();
     },
     "newItemAdded": function(){
-      console.log(Session.get('newItemAdded'));
-      return Session.get('newItemAdded');
+      return Template.instance().newItemAdded.get();
     },
     "suggestions": function(){
-      return Session.get("suggestions");
+      return Template.instance().suggestions.get();
     }
 
   });
 
 Template.assetFromVendor.events({
-  "keyup #searchPO": function(event){
+  "keyup #searchPO": function(event,template){
     var val = $("#searchPO").val();
 
     Meteor.call("searchPO",val,function(error,result){
-      Session.set("suggestions",result);
+      template.suggestions.set(result);
     });
   },
-  "click .search-po" : function(event){
+  "click .search-po" : function(event,template){
     var value = $("#searchPO").val();
 
     Meteor.call("getByPOnumber",value,function(error, result){
-      Session.set('showPOItem',true);
-      Session.set("items",result);
+      template.showPOItem.set(true);
+      template.items.set(result);
     });
-    
+
   },
-  "click .add-new-item" : function(event){
+  "click .add-new-item" : function(event,template){
 
     event.preventDefault();
 
-    var ii = items.find({ });
-    console.log("ii"+ii);
-
     var newObj = {};
-    itemsCount=ii.length  ;
     newObj.serialNo = document.getElementById("serialNumber").value;
     newObj.deliveryChallan = document.getElementById("deliveryChallan").value;
     newObj.desciption = "Dell Latitude 3450";
-    newObj.sNo = itemsCount;
-    items.insert(newObj);
 
-    Session.set("newItemAdded", true);
+    var items = template.newItems.get();
+    var itemsCount = items.length;
+
+    newObj.sNo = itemsCount;
+    items.push(newObj);
+
+    template.newItems.set(items);
+
+    template.newItemAdded.set(true);
 
 
   },
   "click .suggestedPO": function(event){
     $("#searchPO").val(event.target.getAttribute('id'));
-  }
-});
-
-Template.poItem.events({
-  "click .add-to-asset": function(){
-    Session.set("addToAsset",true);
+  },
+  "click .add-to-asset": function(event,template){
+    template.addToAsset.set(true);
     console.log("called poitem event");
   }
 });

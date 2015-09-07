@@ -6,7 +6,7 @@
           <input class="form-control input-sm " id="searchPO" placeholder="Search PO" type="text">
 
             <span class="input-group-btn">
-              <button class="btn btn-info btn-sm search-po" type="button">
+              <button class="btn btn-info btn-sm search-po" type="button" style="margin-bottom:0.9%">
                 <i class="fa fa-search"></i>
               </button>
             </span>
@@ -34,7 +34,14 @@
 
           <div class="row data-grid-row">
             {{#each items}}
-            {{> poItem}}
+              <div class="col-md-1 data-grid-column">{{ponumber}}</div>
+              <div class="col-md-2 data-grid-column">{{supplier}}</div>
+              <div class="col-md-1 data-grid-column">{{type}}</div>
+              <div class="col-md-2 data-grid-column">{{make}}</div>
+              <div class="col-md-2 data-grid-column">{{model}}</div>
+              <div class="col-md-1 data-grid-column">{{qty}}</div>
+              <div class="col-md-1 data-grid-column">{{remaining_qty}}</div>
+              <div class="col-md-2 data-grid-column"><button type="button" class="btn-success add-to-asset">Add to Asset</button></div>
             {{/each}}
           </div>
 
@@ -61,7 +68,12 @@
           </div>
 
             {{#each newItems}}
-              {{> newItem}}
+              <div class="row data-grid-row">
+                <div class="col-md-2 data-grid-column">{{sNo}}</div>
+                <div class="col-md-2 data-grid-column">{{Description}}</div>
+                <div class="col-md-2 data-grid-column">{{serialNo}}</div>
+                <div class="col-md-2 data-grid-column">{{deliveryChallan}}</div>
+              </div>
             {{/each}}
 
         {{/if}}
