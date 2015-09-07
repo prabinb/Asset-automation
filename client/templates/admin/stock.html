@@ -1,6 +1,8 @@
 <template name="stock">
+  {{#if assets.length}}
   <div id="stock-assets" class="container-fluid data-grid">
     <div class="row data-grid-header">
+      <div class="col-md-1 data-grid-column">Sr No.</div>
       <div class="col-md-1 data-grid-column">Type</div>
       <div class="col-md-1 data-grid-column">Make</div>
       <div class="col-md-2 data-grid-column">Model</div>
@@ -14,6 +16,7 @@
     </div>
     {{#each assets}}
     <div class="row data-grid-row">
+      <div class="col-md-1 data-grid-column">{{srno}}</div>
       <div class="col-md-1 data-grid-column">{{type}}</div>
       <div class="col-md-1 data-grid-column">{{make}}</div>
       <div class="col-md-2 data-grid-column">{{model}}</div>
@@ -27,5 +30,9 @@
     </div>
     {{/each}}
   </div>
-
+  {{else}}
+  <p>
+    We don't have any asset in stock.
+  </p>
+  {{/if}}
 </template>

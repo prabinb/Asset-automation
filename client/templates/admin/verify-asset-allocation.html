@@ -1,9 +1,8 @@
 <template name="verifyAssetAllocation">
+  {{#if assets.length}}
   <div id="asset-allocation-assets" class="container-fluid data-grid">
     <div class="row data-grid-header">
-      <div class="data-grid-checkbox data-grid-column">
-        <input type="checkbox" id="header-checkbox" value="">
-      </div>
+      <div class="col-md-1 data-grid-column">Sr No.</div>
       <div class="col-md-1 data-grid-column">Type</div>
       <div class="col-md-1 data-grid-column">Make</div>
       <div class="col-md-1 data-grid-column">Model</div>
@@ -21,9 +20,7 @@
     </div>
     {{#each assets}}
     <div class="row data-grid-row">
-      <div class="data-grid-checkbox data-grid-column">
-        <input type="checkbox" name="name" value="">
-      </div>
+      <div class="col-md-1 data-grid-column">{{srno}}</div>
       <div class="col-md-1 data-grid-column">{{type}}</div>
       <div class="col-md-1 data-grid-column">{{make}}</div>
       <div class="col-md-1 data-grid-column">{{model}}</div>
@@ -37,11 +34,19 @@
       <div class="col-md-1 data-grid-column">{{emailid}}</div>
       <div class="col-md-1 data-grid-column">{{project}}</div>
       <div class="col-md-1 data-grid-column">{{manager}}</div>
-      <div class="col-md-1 data-grid-column"><button type="button" class="btn btn-link">Edit</button></div>
+      <div class="col-md-1 data-grid-column">
+        <button type="button" class="btn btn-link verify-allocation-btn">Verify</button>
+        <button type="button" class="btn btn-link">Edit</button>
+      </div>
     </div>
     {{/each}}
   </div>
   <div class="text-align-center marginT15">
-  <button type="button" class="btn btn-primary">Verify Allocation</button>
-  </div>
+  <button type="button" class="btn btn-primary" id="btn-verify-allocation">Verify All Allocation</button>
+</div>
+  {{else}}
+  <p>
+  You don't have any asset allocation request
+  </p>
+  {{/if}}
 </template>

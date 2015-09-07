@@ -1,21 +1,4 @@
 Meteor.methods({
-  getAssetVerificationRequests: function(){
-    var verificationRequests = [];
-    AssetsProcured.find({verified: false}).forEach(function(AssetsProcuredItem){
-      //Get Asset Details
-      var asset = AssetsDetails.findOne({_id: AssetsProcuredItem.asset_id});
-
-      verificationRequests.push({
-        id: AssetsProcuredItem._id,
-        ponumber: AssetsProcuredItem.ponumber,
-        supplier: AssetsProcuredItem.supplier,
-        deliverychallan: AssetsProcuredItem.deliverychallan,
-        serialno: asset.serialno,
-        description: asset.make + " " + asset.model
-      });
-    });
-    return verificationRequests;
-  },
   verifyAssetVerificationRequests: function (assetProcuredIds) {
       assetProcuredIds.forEach(function(procuredId){
         var assetProcuredItem = AssetsProcured.findOne({_id: procuredId});
@@ -31,7 +14,11 @@ Meteor.methods({
         AssetsProcured.update({_id: procuredId},{$set: {"verified": true}});
       });
   },
-  getAssetsAllocationRequests: function(){
-    //var allocationRequests = [];
+  verifyAssetAllocationRequests: function(inventoryIds){
+    inventoryIds.forEach(function(inventoryId){
+      Inventory.update({_id: inventoryId},{$set: {
+        assetstate: "Allocated"
+      }});
+    });
   }
 });
