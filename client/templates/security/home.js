@@ -28,11 +28,5 @@ if (Meteor.isClient) {
     }
   ]});
 
-Template.poItem.events({
-  "click .add-to-asset": function(){
-    Session.set("addToAsset",true);
-    console.log("called poitem event");
-  }
-});
 
 }
