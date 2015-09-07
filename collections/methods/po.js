@@ -1,5 +1,3 @@
-//var ProcurementOrder = new Mongo.Collection("procurement_order");
-
 var POObj = function(options){
   this.ponumber = options.ponumber;
   this.supplier = options.supplier;
@@ -58,13 +56,3 @@ Meteor.methods({
     return result;
   }
 });
-
-if(Meteor.isServer){
-  // Meteor.publish("procurement_order", function () {
-  //   return ProcurementOrder.find();
-  // });
-}
-
-if(Meteor.isClient){
-  // Meteor.subscribe("procurement_order");
-}

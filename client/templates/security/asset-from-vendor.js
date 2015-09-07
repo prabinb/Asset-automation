@@ -6,6 +6,7 @@ if (Meteor.isClient) {
     this.showPOItem = new ReactiveVar(false);
     this.addToAsset = new ReactiveVar(false);
     this.newItemAdded = new ReactiveVar(false);
+    this.checkNotEmpty = new ReactiveVar(true);
     this.suggestions = new ReactiveVar([]);
   });
 
@@ -27,6 +28,9 @@ if (Meteor.isClient) {
     },
     "suggestions": function(){
       return Template.instance().suggestions.get();
+    },
+    "checkNotEmpty": function(){
+      return Template.instance().checkNotEmpty.get();
     }
 
   });
@@ -53,19 +57,68 @@ Template.assetFromVendor.events({
     event.preventDefault();
 
     var newObj = {};
-    newObj.serialNo = document.getElementById("serialNumber").value;
-    newObj.deliveryChallan = document.getElementById("deliveryChallan").value;
-    newObj.desciption = "Dell Latitude 3450";
+    newObj.serialno = document.getElementById("serialNumber").value;
+    newObj.deliverychallan = document.getElementById("deliveryChallan").value;
+
 
     var items = template.newItems.get();
     var itemsCount = items.length;
 
-    newObj.sNo = itemsCount;
+    newObj.sNo = itemsCount+1;
+
+    var itemSelected = template.items.get()[0];
+
+    newObj.desciption = itemSelected.make + " " +itemSelected.model;
+
     items.push(newObj);
 
     template.newItems.set(items);
 
     template.newItemAdded.set(true);
+
+
+    var dataObject = {
+      "type": itemSelected.type,
+      "make": itemSelected.make,
+      "model": itemSelected.model,
+      "serialno": newObj.serialno
+    };
+    console.log(newObj.serialno);
+    var addedAssetId;
+
+    Meteor.call("addInAsset", dataObject,newObj.serialno, function(error, result){
+      if(error){
+        console.log("error", error);
+      }
+      if(result){
+        console.log(result);
+        //addedAssetId = result.asset_id;
+      }
+    });
+
+    var procuredAsset = {
+      "ponumber" : itemSelected.ponumber,
+      "supplier": itemSelected.supplier,
+      "deliverychallan": newObj.deliverychallan,
+      "asset_id": addedAssetId,
+      "comment": "",
+      "verified": false
+    }
+
+    Meteor.call("addInAssetProcured", procuredAsset, function(error, result){
+      if(error){
+        console.log("error", error);
+      }
+      if(result){
+        console.log("Added in asset procured successfully");
+      }
+    });
+
+
+
+    $("#serialNumber").val("");
+    $("#deliveryChallan").val("");
+
 
 
   },
@@ -75,6 +128,18 @@ Template.assetFromVendor.events({
   "click .add-to-asset": function(event,template){
     template.addToAsset.set(true);
     console.log("called poitem event");
+  },
+  "keyup #serialNumber, keyup #deliveryChallan": function(event, template){
+    var filled = false;
+    if($("#serialNumber").val() && $("#deliveryChallan").val()){
+      filled = true;
+    }
+
+    if(filled){
+      $("#addItemButton").removeAttr('disabled');
+    }else{
+      $("#addItemButton").attr('disabled', 'disabled');
+    }
   }
 });
 

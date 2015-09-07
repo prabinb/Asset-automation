@@ -47,13 +47,13 @@
 
         {{/if}}
       </div>
-      <div class="row">
+      <div class="row" >
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2" style="margin-top:5%;margin-left:4%">
           {{#if addToAsset}}
-          <form >
-            <label class="">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline" type="text">
-            <label class="">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline" type="text">
-            <button type="button" class="add-new-item">Add</button>
+          <form id="addItemForm">
+            <label class="">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline" type="text" required>
+            <label class="">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline" type="text" required>
+            <button type="button" id="addItemButton" class="add-new-item" disabled="disabled">Add</button>
           </form>
           {{/if}}
         </div>
@@ -65,6 +65,8 @@
             <div class="col-md-2 data-grid-column">Description</div>
             <div class="col-md-2 data-grid-column">Serial No.</div>
             <div class="col-md-2 data-grid-column">Delivery Challan</div>
+            <div class="col-md-2 data-grid-column">Edit</div>
+            <div class="col-md-2 data-grid-column">Remove</div>
           </div>
 
             {{#each newItems}}
@@ -73,6 +75,8 @@
                 <div class="col-md-2 data-grid-column">{{Description}}</div>
                 <div class="col-md-2 data-grid-column">{{serialNo}}</div>
                 <div class="col-md-2 data-grid-column">{{deliveryChallan}}</div>
+                <div class="col-md-2 data-grid-column"><button type="button">Edit</button></div>
+                <div class="col-md-2 data-grid-column"><button type="button">Remove</button></div>
               </div>
             {{/each}}
 
