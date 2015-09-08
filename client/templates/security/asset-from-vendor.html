@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="data-grid container-fluid marginT4per">
-        {{#if showPO}}
+        {{#if items.length}}
         <div class="row data-grid-header">
           <div class="col-md-1 data-grid-column">PO</div>
           <div class="col-md-2 data-grid-column">Supplier</div>
@@ -41,7 +41,7 @@
               <div class="col-md-2 data-grid-column">{{model}}</div>
               <div class="col-md-1 data-grid-column">{{qty}}</div>
               <div class="col-md-1 data-grid-column">{{remaining_qty}}</div>
-              <div class="col-md-2 data-grid-column"><button type="button" class="btn-success add-to-asset">Add to Asset</button></div>
+              <div class="col-md-2 data-grid-column"><button id="add-to-asset" disabled="{{disabledAddToAsset}}" type="button" class="btn-success add-to-asset">Add to Asset</button></div>
 
           </div>
           {{/each}}
@@ -53,13 +53,13 @@
           <form id="addItemForm">
             <label class="col-lg-2 col-md-2 inline">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline spaced col-lg-2 col-md-2" type="text" required>
             <label class="col-lg-2 col-md-2 inline">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline spaced col-lg-2 col-md-2" type="text" required>
-            <button type="button" id="addItemButton" class="add-new-item" disabled="disabled"  style="margin-bottom:0.9%">Add</button>
+            <button type="button" id="addItemButton" class="add-new-item" disabled="{{disableAddNewItem}}"  style="margin-bottom:0.9%">Add</button>
           </form>
           {{/if}}
         </div>
       </div>
       <div class="data-grid container-fluid marginT4per marginB4per col-md-offset-2">
-        {{#if newItemAdded}}
+        {{#if newItems.length}}
           <div class="row data-grid-header">
             <div class="col-md-2 data-grid-column">S No.</div>
             <div class="col-md-2 data-grid-column">Description</div>

@@ -3,11 +3,12 @@ if (Meteor.isClient) {
   Template.assetFromVendor.onCreated(function() {
     this.items = new ReactiveVar([]);
     this.newItems = new ReactiveVar([]);
-    this.showPOItem = new ReactiveVar(false);
     this.addToAsset = new ReactiveVar(false);
-    this.newItemAdded = new ReactiveVar(false);
+    this.disableAddNewItem = new ReactiveVar(true);
+    this.disabledAddToAsset = new ReactiveVar(false);
     this.checkNotEmpty = new ReactiveVar(true);
     this.suggestions = new ReactiveVar([]);
+    this.currentPO = new ReactiveVar(null);
   });
 
   Template.assetFromVendor.helpers({
@@ -16,9 +17,6 @@ if (Meteor.isClient) {
     },
     "newItems": function(){
       return Template.instance().newItems.get();
-    },
-    "showPO": function(){
-      return Template.instance().showPOItem.get();
     },
     "addToAsset": function(){
       return Template.instance().addToAsset.get();
@@ -31,6 +29,15 @@ if (Meteor.isClient) {
     },
     "checkNotEmpty": function(){
       return Template.instance().checkNotEmpty.get();
+    },
+    "currentPO":function(){
+      return Template.instance().currentPO.get();
+    },
+    "disableAddNewItem": function(){
+      return Template.instance().disableAddNewItem.get();
+    },
+    "disabledAddToAsset": function(){
+      return Template.instance().disabledAddToAsset.get();
     }
 
   });
@@ -45,22 +52,34 @@ Template.assetFromVendor.events({
   },
   "click .search-po" : function(event,template){
     var value = $("#searchPO").val();
+    if(template.currentPO.get() !== value){
 
-    Meteor.call("getByPOnumber",value,function(error, result){
-      template.showPOItem.set(true);
-      template.items.set(result);
+      //reset the state of the page
+      template.addToAsset.set(false);
+      template.newItems.set([]);
 
-      console.log(result);
-    });
+      //set the value of current Procurement order
+      template.currentPO.set(value);
 
+      Meteor.call("getByPOnumber",value,function(error, result){
+        template.items.set(result);
+
+        //change the disabled property of add-to-asset button based on remaining quantity
+        if(result[0].remaining_qty > 0){
+          template.disabledAddToAsset.set(false);
+        }else{
+          template.disabledAddToAsset.set(true);
+        }
+      });
+    }
   },
   "click .add-new-item" : function(event,template){
 
     event.preventDefault();
 
     var newObj = {};
-    newObj.serialno = document.getElementById("serialNumber").value;
-    newObj.deliverychallan = document.getElementById("deliveryChallan").value;
+    newObj.serialno = $("#serialNumber").val();
+    newObj.deliverychallan = $("#deliveryChallan").val();
 
 
     var items = template.newItems.get();
@@ -97,23 +116,22 @@ Template.assetFromVendor.events({
         console.log(result);
       }
     });
-
-
-
     template.newItems.set(items);
-
-    template.newItemAdded.set(true);
 
     $("#serialNumber").val("");
     $("#deliveryChallan").val("");
-    $("#addItemButton").attr('disabled', 'disabled');
 
     var value = $("#searchPO").val();
+    
     Meteor.call("getByPOnumber",value,function(error, result){
-      template.showPOItem.set(true);
       template.items.set(result);
-
-      console.log(result);
+      //change the disabled property of add-to-asset button based on remaining quantity
+      if(result[0].remaining_qty > 0){
+        template.disabledAddToAsset.set(false);
+      }else{
+        template.disabledAddToAsset.set(true);
+        template.addToAsset.set(false);
+      }
     });
   },
   "click .suggestedPO": function(event){
@@ -121,18 +139,13 @@ Template.assetFromVendor.events({
   },
   "click .add-to-asset": function(event,template){
     template.addToAsset.set(true);
-    console.log("called poitem event");
   },
   "keyup #serialNumber, keyup #deliveryChallan": function(event, template){
-    var filled = false;
     if($("#serialNumber").val() && $("#deliveryChallan").val()){
-      filled = true;
+      template.disableAddNewItem.set(false);
     }
-
-    if(filled){
-      $("#addItemButton").removeAttr('disabled');
-    }else{
-      $("#addItemButton").attr('disabled', 'disabled');
+    else{
+      template.disableAddNewItem.set(true);
     }
   }
 });
