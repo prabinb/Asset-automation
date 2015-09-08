@@ -31,9 +31,9 @@
           <div class="col-md-1 data-grid-column">Remaining</div>
           <div class="col-md-2 data-grid-column">Action</div>
         </div>
-
+          {{#each items}}
           <div class="row data-grid-row">
-            {{#each items}}
+
               <div class="col-md-1 data-grid-column">{{ponumber}}</div>
               <div class="col-md-2 data-grid-column">{{supplier}}</div>
               <div class="col-md-1 data-grid-column">{{type}}</div>
@@ -42,41 +42,37 @@
               <div class="col-md-1 data-grid-column">{{qty}}</div>
               <div class="col-md-1 data-grid-column">{{remaining_qty}}</div>
               <div class="col-md-2 data-grid-column"><button type="button" class="btn-success add-to-asset">Add to Asset</button></div>
-            {{/each}}
-          </div>
 
+          </div>
+          {{/each}}
         {{/if}}
       </div>
       <div class="row" >
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2" style="margin-top:5%;margin-left:4%">
           {{#if addToAsset}}
           <form id="addItemForm">
-            <label class="">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline" type="text" required>
-            <label class="">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline" type="text" required>
-            <button type="button" id="addItemButton" class="add-new-item" disabled="disabled">Add</button>
+            <label class="col-lg-2 col-md-2 inline">Serial No.</label><input name="serialNo" id="serialNumber" class="form-inline spaced col-lg-2 col-md-2" type="text" required>
+            <label class="col-lg-2 col-md-2 inline">Delivery Challan</label><input name="deliveryChallan" id="deliveryChallan" class="form-inline spaced col-lg-2 col-md-2" type="text" required>
+            <button type="button" id="addItemButton" class="add-new-item" disabled="disabled"  style="margin-bottom:0.9%">Add</button>
           </form>
           {{/if}}
         </div>
       </div>
-      <div class="data-grid container-fluid marginT4per col-md-offset-2">
+      <div class="data-grid container-fluid marginT4per marginB4per col-md-offset-2">
         {{#if newItemAdded}}
           <div class="row data-grid-header">
             <div class="col-md-2 data-grid-column">S No.</div>
             <div class="col-md-2 data-grid-column">Description</div>
             <div class="col-md-2 data-grid-column">Serial No.</div>
             <div class="col-md-2 data-grid-column">Delivery Challan</div>
-            <div class="col-md-2 data-grid-column">Edit</div>
-            <div class="col-md-2 data-grid-column">Remove</div>
           </div>
 
             {{#each newItems}}
               <div class="row data-grid-row">
                 <div class="col-md-2 data-grid-column">{{sNo}}</div>
-                <div class="col-md-2 data-grid-column">{{Description}}</div>
-                <div class="col-md-2 data-grid-column">{{serialNo}}</div>
-                <div class="col-md-2 data-grid-column">{{deliveryChallan}}</div>
-                <div class="col-md-2 data-grid-column"><button type="button">Edit</button></div>
-                <div class="col-md-2 data-grid-column"><button type="button">Remove</button></div>
+                <div class="col-md-2 data-grid-column">{{description}}</div>
+                <div class="col-md-2 data-grid-column">{{serialno}}</div>
+                <div class="col-md-2 data-grid-column">{{deliverychallan}}</div>
               </div>
             {{/each}}
 

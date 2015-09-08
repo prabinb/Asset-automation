@@ -24,7 +24,8 @@ Meteor.methods({
         "type": item.type,
         "make": item.make,
         "model": item.model,
-        "qty": item.qty
+        "qty": item.qty,
+        "remaining_qty":item.remaining_qty
       });
     });
 
@@ -49,10 +50,14 @@ Meteor.methods({
         "type": item.type,
         "make": item.make,
         "model": item.model,
-        "qty": item.qty
+        "qty": item.qty,
+        "remaining_qty": item.remaining_qty
       });
     });
 
     return result;
+  },
+  updatePORemainingQuantityByNumber : function(ponumber,remaining_qty){
+    ProcurementOrder.update({"ponumber":ponumber},{"$set":{"remaining_qty":remaining_qty}});
   }
 });

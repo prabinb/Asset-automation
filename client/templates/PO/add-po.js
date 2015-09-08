@@ -16,7 +16,8 @@ Template.PO.events({
       "type": form.type.value,
       "make": form.make.value,
       "model": form.model.value,
-      "qty": form.qty.value
+      "qty": form.qty.value,
+      "remaining_qty": form.qty.value
     };
 
     Meteor.call("addPO", POobject, function(error, result){

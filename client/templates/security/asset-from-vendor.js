@@ -49,6 +49,8 @@ Template.assetFromVendor.events({
     Meteor.call("getByPOnumber",value,function(error, result){
       template.showPOItem.set(true);
       template.items.set(result);
+
+      console.log(result);
     });
 
   },
@@ -67,60 +69,52 @@ Template.assetFromVendor.events({
     newObj.sNo = itemsCount+1;
 
     var itemSelected = template.items.get()[0];
-
-    newObj.desciption = itemSelected.make + " " +itemSelected.model;
+    var remaining_qty = itemSelected.remaining_qty;
+    newObj.description = itemSelected.make + " " +itemSelected.model;
 
     items.push(newObj);
 
-    template.newItems.set(items);
-
-    template.newItemAdded.set(true);
-
-
-    var dataObject = {
+    var assetObj = {
       "type": itemSelected.type,
       "make": itemSelected.make,
       "model": itemSelected.model,
       "serialno": newObj.serialno
     };
-    console.log(newObj.serialno);
-    var addedAssetId;
 
-    Meteor.call("addInAsset", dataObject,newObj.serialno, function(error, result){
+    var procuredAssetObj = {
+      "ponumber" : itemSelected.ponumber,
+      "supplier": itemSelected.supplier,
+      "deliverychallan": newObj.deliverychallan,
+      "comment": "",
+      "verified": false
+    }
+
+    Meteor.call("addInAsset", assetObj, procuredAssetObj,remaining_qty-1, function(error, result){
       if(error){
         console.log("error", error);
       }
       if(result){
         console.log(result);
-        //addedAssetId = result.asset_id;
-      }
-    });
-
-    var procuredAsset = {
-      "ponumber" : itemSelected.ponumber,
-      "supplier": itemSelected.supplier,
-      "deliverychallan": newObj.deliverychallan,
-      "asset_id": addedAssetId,
-      "comment": "",
-      "verified": false
-    }
-
-    Meteor.call("addInAssetProcured", procuredAsset, function(error, result){
-      if(error){
-        console.log("error", error);
-      }
-      if(result){
-        console.log("Added in asset procured successfully");
       }
     });
 
 
+
+    template.newItems.set(items);
+
+    template.newItemAdded.set(true);
 
     $("#serialNumber").val("");
     $("#deliveryChallan").val("");
+    $("#addItemButton").attr('disabled', 'disabled');
 
+    var value = $("#searchPO").val();
+    Meteor.call("getByPOnumber",value,function(error, result){
+      template.showPOItem.set(true);
+      template.items.set(result);
 
-
+      console.log(result);
+    });
   },
   "click .suggestedPO": function(event){
     $("#searchPO").val(event.target.getAttribute('id'));

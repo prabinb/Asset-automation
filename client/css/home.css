@@ -14,6 +14,10 @@
   margin-top: 4%;
 }
 
+.marginB4per{
+  margin-bottom: 4%;
+}
+
 .text-align-center{
   text-align: center;
 }
@@ -53,3 +57,12 @@
 }
 
 /* end data grid css*/
+
+.inline{
+  display:inline;
+}
+
+.spaced{
+  margin-left:1em;
+  margin-right:1em;
+}
