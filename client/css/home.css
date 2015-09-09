@@ -56,6 +56,12 @@
   width: 20px;
 }
 
+.no-border .data-grid-column{
+  border: 0px solid lightgray;
+}
+.data-grid-column .search-text{
+  width: 90%;
+}
 /* end data grid css*/
 
 .inline{
