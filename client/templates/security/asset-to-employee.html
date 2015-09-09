@@ -1,10 +1,11 @@
 <template name="assetToEmployee">
   <div class="container">
     <div class="row">
-
-      <div class="col-md-4" style="margin-top:4%">
-        Type
-        <select id="type-select" style="margin-left:1%">
+      <div class="form-group">
+        <label>
+          Type
+        </label>
+        <select id="type-select">
             <option disabled="disabled" selected="selected">Select Type</option>
             {{#each type}}
                 <option value="{{this}}">{{this}}</option>
@@ -12,27 +13,25 @@
         </select>
       </div>
 
-      <div class="col-md-4" style="margin-top:4%">
-        Serial Number
-        <select id="serial-number-select" style="margin-left:1%" disabled="{{apple}}">
+      <div class="form-group">
+        <label >Serial Number</label>
+        <select id="serial-number-select" disabled="{{apple}}">
             <option disabled="disabled" selected="selected">Select Serial Number</option>
-            {{#each serialNumber}}
-                <option value="{{this}}">{{this}}</option>
+            {{#each serialNumberList}}
+                <option value="{{serialno}}">{{serialno}}</option>
             {{/each}}
         </select>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4" style="margin-top:4%">
-        Emp Id
-        <input type="text" id="empId">
+      <div class="form-group">
+        <label>
+          Emp Id
+        </label>
+        <input class="form-control" type="text" id="empid">
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-4" style="margin-top:7%">
+    <div class="form-group">
         <button id="assign-asset-to-emp" type="button">
-        Update
+        Assign
         </button>
       </div>
     </div>

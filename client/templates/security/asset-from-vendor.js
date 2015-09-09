@@ -122,7 +122,7 @@ Template.assetFromVendor.events({
     $("#deliveryChallan").val("");
 
     var value = $("#searchPO").val();
-    
+    template.disableAddNewItem.set(true);
     Meteor.call("getByPOnumber",value,function(error, result){
       template.items.set(result);
       //change the disabled property of add-to-asset button based on remaining quantity

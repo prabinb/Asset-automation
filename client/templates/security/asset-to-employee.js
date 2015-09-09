@@ -1,36 +1,58 @@
-Session.set("type","");
+Template.assetToEmployee.onCreated(function() {
+  var template = this;
+
+  this.serialNumberList = new ReactiveVar([]);
+  this.typeList = new ReactiveVar([]);
+  this.selected = new ReactiveVar(null);
+
+  Meteor.call("getAssetTypes",function(error, result){
+    template.typeList.set(result);
+  });
+});
+
 Template.assetToEmployee.helpers({
-    "type": function(){
-        return ["Laptop", "Headset", "Mouse", "Keyboard","LCD"];
-    },
-    "serialNumber" : function(){
-      var type = Session.get("type");
-      var arr = new Array();
-      for(var i=0;i<10;i++){
-        arr.push(type.toString() + i.toString());
-      }
-      return arr;
-    },
-    "apple": function(){
-      if(Session.get("type") !== ""){
-        return false;
-      }
-      else{
-        return true;
-      }
-    }
+  "type": function(){
+    return Template.instance().typeList.get();
+  },
+  "serialNumberList" : function(){
+    return Template.instance().serialNumberList.get();
+  },
+
 });
 
 Template.assetToEmployee.events({
-    "change #type-select": function (event, template) {
-        var type = $(event.currentTarget).val();
-        Session.set("type",type);
-        console.log("type of asset : " + type);
-        // additional code to do what you want with the category
-    },
-    "change #serial-number-select": function (event, template) {
-        var type = $(event.currentTarget).val();
-        console.log("type of asset : " + type);
-        // additional code to do what you want with the category
+  "change #type-select": function (event, template) {
+    var type = $(event.currentTarget).val();
+
+    Meteor.call("findAvailableAssetsByType", type, function(error, result){
+
+      if(result){
+        console.log(result);
+      template.serialNumberList.set(result);
     }
+    });
+  },
+  "change #serial-number-select": function (event, template) {
+    var obj = $(event.currentTarget).val();
+    template.selected.set(obj);
+  },
+  "click #assign-asset-to-emp": function(event, template){
+    var obj = template.selected.get();
+    var foundObj;
+    var list = template.serialNumberList.get();
+    list.forEach(function(l,i){
+      if(l.serialno === obj){
+        foundObj = l;
+      }
+    });
+
+    var inventory_id = foundObj.inventory_id;
+    var empid = $("#empid").val();
+    Meteor.call("assignAssetToEmployee", empid, inventory_id, function(error, result){
+      console.log(error,result);
+      if(result){
+        console.log("Successfully updated the inventory with empid"+empid)
+      }
+    });
+  }
 });

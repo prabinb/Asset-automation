@@ -29,5 +29,31 @@ Meteor.methods({
      }
 
      return result;
+  },
+  findAvailableAssetsByType: function(type){
+    var results = [];
+    AssetsDetails.find({"type":type}).forEach(function(asset,index){
+      console.log(index,asset);
+      var inventoryAsset = Inventory.findOne({"asset_id":asset._id,"assetstate":"Inventory"})
+      console.log(inventoryAsset);
+      if(inventoryAsset){
+        results.push({"serialno":asset.serialno,"inventory_id":inventoryAsset._id});
+      }
+    });
+
+    return results;
+  },
+  getAssetTypes: function(){
+    var results = _.uniq(AssetsDetails.find({}, {
+       sort: {"type": 1}, fields: {"type": true}
+   }).fetch().map(function(x) {
+       return x.type;
+   }), true);
+    console.log(results);
+    return results;
+  },
+  assignAssetToEmployee: function(empid,inventory_id){
+    console.log(empid,inventory_id);
+    Inventory.update({"_id": inventory_id}, {"$set": {"empid": empid,"assetstate": "Security"}});
   }
 });
