@@ -71,9 +71,10 @@ Template.assetToEmployee.events({
     var inventory_id = foundObj.inventory_id;
     var empid = $("#empid").val();
     Meteor.call("assignAssetToEmployee", empid, inventory_id, function(error, result){
-      console.log(error,result);
-      if(result){
-        console.log("Successfully updated the inventory with empid"+empid)
+      if(result.statusCode === 200){
+        $('#type-select').get(0).selectedIndex = 0;
+        $('#serial-number-select').get(0).selectedIndex = 0;
+        $("#empid").val("");
       }
     });
   },

@@ -45,15 +45,18 @@ Meteor.methods({
   },
   getAssetTypes: function(){
     var results = _.uniq(AssetsDetails.find({}, {
-       sort: {"type": 1}, fields: {"type": true}
-   }).fetch().map(function(x) {
-       return x.type;
-   }), true);
-    console.log(results);
+                   sort: {"type": 1}, fields: {"type": true}
+                   }).fetch().map(function(x) {
+                       return x.type;
+                   }), true);
     return results;
   },
   assignAssetToEmployee: function(empid,inventory_id){
-    console.log(empid,inventory_id);
-    Inventory.update({"_id": inventory_id}, {"$set": {"empid": empid,"assetstate": "Security"}});
+    var assigned = Inventory.update({"_id": inventory_id}, {"$set": {"empid": empid,"assetstate": "Security"}});
+    if(assigned){
+      return {"statusMsg":"Assigned asset to employee "+empid+" successfully","statusCode":200}
+    }else{
+      return {"statusMsg":"there is some error. Please try again","statusCode":500}
+    }
   }
 });

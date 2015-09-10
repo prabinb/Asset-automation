@@ -18,6 +18,10 @@
   margin-bottom: 4%;
 }
 
+.marginT2per{
+  margin-top:2%;
+}
+
 .text-align-center{
   text-align: center;
 }
@@ -97,4 +101,28 @@ padding:12px;
     margin:10px 22px;
     font-size:2em;
     vertical-align:middle;
+}
+select{
+  display: block;
+  padding: 6px 12px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+  height: 34px;
+  width: 100%;
+}
+
+option.modified{
+  z-index: 1000;
+  height: 34px;
+}
+.form-group{
+  width:50% !important;
+
+}
+
+#addPOForm{
+  margin-top:2%;
 }

@@ -1,5 +1,5 @@
 <template name="assetToEmployee">
-  <div class="container">
+  <div class="container marginT2per">
     {{#if information.length}}
       {{#each information}}
         <div class="success"><i class="fa fa-check"></i>{{this}}</div>
@@ -10,10 +10,10 @@
         <label>
           Type
         </label>
-        <select id="type-select" required>
-            <option disabled="disabled" selected="selected">Select Type</option>
+        <select id="type-select" class="form-control" required>
+            <option class="modified" disabled="disabled" selected="selected">Select Type</option>
             {{#each type}}
-                <option value="{{this}}">{{this}}</option>
+                <option class="modified" value="{{this}}">{{this}}</option>
             {{/each}}
         </select>
       </div>
