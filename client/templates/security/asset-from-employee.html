@@ -1,19 +1,19 @@
 <template name="assetFromEmployee">
-  <div class="container">
-      <div class="row">
-        <div id="custom-search-employee">
-          <div class="input-group col-md-4" style="margin-top:1%;margin-left:1%">
-            <input class="form-control input-sm " id="searchEmployee" placeholder="Search Employee" type="text">
-              <span class="input-group-btn">
-                <button class="btn btn-info btn-sm search-employee" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="input-group col-md-3">
+        <div class="input-group stylish-input-group">
+          <input type="text" class="form-control" id="searchPO" placeholder="Search PO">
+          <span class="input-group-addon" id="btn-searchPO">
+            <button type="submit">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
         </div>
       </div>
-<div class="marginT4per">
-{{#if employeeHasAssets}}
+    </div>
+    <div class="marginT4per">
+      {{#if employeeHasAssets}}
       <div id="employee-assets" class="data-grid">
         <div class="row data-grid-header">
           <div class="col-md-1 data-grid-column">Type</div>
@@ -32,15 +32,14 @@
         {{/each}}
       </div>
 
-
-    <div class="row">
-      <div class="col-md-4" style="margin-top:7%">
-        <button id="assign-asset-to-emp" type="button">
-        Update
-        </button>
+      <div class="row">
+        <div class="col-md-4" style="margin-top:7%">
+          <button id="assign-asset-to-emp" type="button">
+            Update
+          </button>
+        </div>
       </div>
+      {{/if}}
     </div>
-{{/if}}
-</div>
   </div>
 </template>

@@ -22,11 +22,8 @@ Template.assetFromEmployee.helpers({
 
 Template.assetFromEmployee.events({
   "click .search-employee": function(event){
-    console.log("haha");
     if($("#searchEmployee").val() === "12306"){
-      console.log("hahahehe");
       Session.set("employeeHasAssets", true);
-
     }
   }
 });

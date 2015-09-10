@@ -13,7 +13,9 @@
 .marginT4per{
   margin-top: 4%;
 }
-
+.marginT2per{
+  margin-top: 2%;
+}
 .marginB4per{
   margin-bottom: 4%;
 }
@@ -29,6 +31,8 @@
 .data-grid{
   display: table;
   width: calc(100% - 90px);
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 .data-grid-header{
@@ -39,7 +43,7 @@
   display: table-row;
 }
 .data-grid-column{
-  padding: 0.5%;
+  padding: 5px 15px;
   border-top: 1px solid lightgray;
   border-left: 1px solid lightgray;
   display: table-cell;
@@ -126,3 +130,18 @@ option.modified{
 #addPOForm{
   margin-top:2%;
 }
+
+/* search css */
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+	border-right:0;
+	box-shadow:0 0 0;
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+/* end search css */
