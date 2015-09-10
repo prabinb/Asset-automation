@@ -1,5 +1,10 @@
 <template name="PO">
   <div class="container">
+    {{#if information.length}}
+      {{#each information}}
+        <div class="success"><i class="fa fa-check"></i>{{this}}</div>
+      {{/each}}
+    {{/if}}
     <div class="row">
       <form id="addPOForm">
         <div class="form-group">
