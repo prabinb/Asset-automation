@@ -1,21 +1,47 @@
-Template.stock.helpers({
-  assets: function(){
-    var stock = [];
-    Inventory.find({assetstate: 'Inventory'}).forEach(function(inventoryItem, index){
-      var asset = AssetsDetails.findOne({_id: inventoryItem.asset_id});
-      stock.push({
-        srno: index + 1,
-        type: asset.type,
-        make: asset.make,
-        model:asset.model,
-        serialno: asset.serialno,
-        assetdetails: inventoryItem.assetdetails
-      });
+(function(){
+  var searchCriteriaObj  = new SearchCriteria(
+    {
+      assetstate: 'Inventory'
+    },
+    {
+      type: "stock-search-type",
+      make: "stock-search-make",
+      model: "stock-search-model",
+      serialno: "stock-search-serialno"
     });
-    return stock;
-  }
-});
 
-Template.stock.events = {
+    Template.stock.onCreated(function() {
+      this.searchCriteria = new ReactiveVar(searchCriteriaObj.buildSearchCriteria());
+    });
 
-};
+    Template.stock.helpers({
+      assets: function(){
+        var stock = [];
+        var searchCriteria = Template.instance().searchCriteria.get();
+        var options = {
+          limit: itemsPerPage
+        };
+        Inventory.find(searchCriteria.inventory, options).forEach(function(inventoryItem, index){
+          searchCriteria.assets["_id"] = inventoryItem.asset_id;
+          var asset = AssetsDetails.findOne(searchCriteria.assets);
+          if(asset){
+            stock.push({
+              srno: index + 1,
+              type: asset.type,
+              make: asset.make,
+              model:asset.model,
+              serialno: asset.serialno,
+              assetdetails: inventoryItem.assetdetails
+            });
+          }
+        });
+        return stock;
+      }
+    });
+
+    Template.stock.events = {
+      'input .search-text': function(){
+        Template.instance().searchCriteria.set(searchCriteriaObj.buildSearchCriteria());
+      }
+    };
+  })();

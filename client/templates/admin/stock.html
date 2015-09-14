@@ -1,13 +1,35 @@
 <template name="stock">
-  {{#if assets.length}}
+  <!-- needs to work in future -->
+  {{#if 1}}
   <div id="stock-assets" class="container-fluid data-grid">
+    <div class="row data-grid-row no-border">
+      <div class="srno-column data-grid-column"></div>
+      <div class="col-md-1 data-grid-column">
+        <input type="text" class="search-text" placeholder="Type" id="stock-search-type" value="" />
+      </div>
+      <div class="col-md-1 data-grid-column">
+        <input type="text" class="search-text" placeholder="Make" id="stock-search-make" value="" />
+      </div>
+      <div class="col-md-2 data-grid-column">
+        <input type="text" class="search-text" placeholder="Model" id="stock-search-model" value="" />
+      </div>
+      <div class="col-md-1 data-grid-column">
+        <input type="text" class="search-text" placeholder="Serial Number" id="stock-search-serialno" value="" />
+      </div>
+      <div class="col-md-1 data-grid-column"></div>
+      <div class="col-md-1 data-grid-column"></div>
+      <div class="col-md-1 data-grid-column"></div>
+      <div class="col-md-2 data-grid-column"></div>
+      <div class="col-md-1 data-grid-column"></div>
+      <div class="col-md-1 data-grid-column"></div>
+    </div>
     <div class="row data-grid-header">
-      <div class="col-md-1 data-grid-column">Sr No.</div>
+      <div class="srno-column data-grid-column">Sr No.</div>
       <div class="col-md-1 data-grid-column">Type</div>
       <div class="col-md-1 data-grid-column">Make</div>
       <div class="col-md-2 data-grid-column">Model</div>
       <div class="col-md-1 data-grid-column">Serial Number</div>
-      <div class="col-md-1 data-grid-column">OEM/NonOEM </div>
+      <div class="col-md-1 data-grid-column">OEM / NonOEM </div>
       <div class="col-md-1 data-grid-column">OS(Live)</div>
       <div class="col-md-1 data-grid-column">CPU(MHz)</div>
       <div class="col-md-2 data-grid-column">CPU Type</div>
@@ -16,7 +38,7 @@
     </div>
     {{#each assets}}
     <div class="row data-grid-row">
-      <div class="col-md-1 data-grid-column">{{srno}}</div>
+      <div class="srno-column data-grid-column">{{srno}}</div>
       <div class="col-md-1 data-grid-column">{{type}}</div>
       <div class="col-md-1 data-grid-column">{{make}}</div>
       <div class="col-md-2 data-grid-column">{{model}}</div>

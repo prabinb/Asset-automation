@@ -30,7 +30,6 @@
 /* data grid css */
 .data-grid{
   display: table;
-  width: calc(100% - 90px);
   margin-left: 0px;
   padding-left: 0px;
 }
@@ -43,7 +42,7 @@
   display: table-row;
 }
 .data-grid-column{
-  padding: 5px 15px;
+  padding: 5px 10px;
   border-top: 1px solid lightgray;
   border-left: 1px solid lightgray;
   display: table-cell;
@@ -68,7 +67,13 @@
   border: 0px solid lightgray;
 }
 .data-grid-column .search-text{
-  width: 90%;
+  width: 100%;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+}
+
+.data-grid .srno-column{
+  min-width: 70px;
 }
 /* end data grid css*/
 
