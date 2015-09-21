@@ -26,6 +26,7 @@
           var asset = AssetsDetails.findOne(searchCriteria.assets);
           if(asset){
             stock.push({
+              _id: inventoryItem._id,
               srno: index + 1,
               type: asset.type,
               make: asset.make,
@@ -42,6 +43,9 @@
     Template.stock.events = {
       'input .search-text': function(){
         Template.instance().searchCriteria.set(searchCriteriaObj.buildSearchCriteria());
+      },
+      'click .btn-decommission': function(){
+        Meteor.call("assetDecommission", this._id);
       }
     };
   })();

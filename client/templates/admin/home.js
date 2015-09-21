@@ -1,3 +1,9 @@
+Template.adminHome.onCreated(function () {
+  Meteor.subscribe("assetsProcured");
+  Meteor.subscribe("assetsDetails");
+  Meteor.subscribe("inventory");
+});
+
 Template.adminHome.helpers({
     tabs: [{
       header: "Stock",
