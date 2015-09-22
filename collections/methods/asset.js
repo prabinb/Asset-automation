@@ -58,5 +58,26 @@ Meteor.methods({
     }else{
       return {"statusMsg":"there is some error. Please try again","statusCode":500}
     }
+  },
+  searchAssetsByEmployee: function(empid){
+    var assetsOfEmployee = [];
+    Inventory.find({"empid":empid,"assetstate":"Allocated"}).forEach(function(asset,index){
+      var res = AssetsDetails.findOne({"_id":asset.asset_id});
+
+      res.inventory_id = asset._id;
+      if(res){
+        assetsOfEmployee.push(res);
+      }
+    });
+
+    return assetsOfEmployee;
+  },
+  deallocateAsset: function(inventory_id){
+    var res = Inventory.update({"_id":inventory_id},{"$set": {"empid": null,"assetstate": "Inventory"}});
+    if(res){
+      return {"statusMsg":"Item deallocated successfully"};
+    }else{
+      return {"statusMsg":"There was some error. Please try again"};
+    }
   }
 });
