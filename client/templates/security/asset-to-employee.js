@@ -70,7 +70,10 @@ Template.assetToEmployee.events({
 
     var inventory_id = foundObj.inventory_id;
     var empid = $("#empid").val();
+
+    console.log(inventory_id);
     Meteor.call("assignAssetToEmployee", empid, inventory_id, function(error, result){
+      console.log(result);
       if(result.statusCode === 200){
         $('#type-select').get(0).selectedIndex = 0;
         $('#serial-number-select').get(0).selectedIndex = 0;

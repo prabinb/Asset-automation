@@ -22,6 +22,15 @@ Meteor.methods({
      // update the remaining quantity in po
      var updatePO = ProcurementOrder.update({"ponumber":assetProcuredObj.ponumber},{"$set":{"remaining_qty":remaining_qty}});
 
+     //update in history
+     History.insert({
+       "asset_id": assetProcuredId,
+       "date": new Date(),
+       "owner": "security",
+       "emp_id": null,
+       "comments": "added in asset by security"
+     });
+
      console.log("updatePO"+updatePO);
 
      var result = {
@@ -33,7 +42,7 @@ Meteor.methods({
   findAvailableAssetsByType: function(type){
     var results = [];
     AssetsDetails.find({"type":type}).forEach(function(asset,index){
-      console.log(index,asset);
+      //console.log(index,asset);
       var inventoryAsset = Inventory.findOne({"asset_id":asset._id,"assetstate":"Inventory"})
       console.log(inventoryAsset);
       if(inventoryAsset){
@@ -53,6 +62,16 @@ Meteor.methods({
   },
   assignAssetToEmployee: function(empid,inventory_id){
     var assigned = Inventory.update({"_id": inventory_id}, {"$set": {"empid": empid,"assetstate": "Security"}});
+
+    // //update in history
+    // History.insert({
+    //   "asset_id": asset.asset_id,
+    //   "date": new Date(),
+    //   "owner": "security",
+    //   "emp_id": null,
+    //   "comments": "assigned asset to employee"
+    // });
+
     if(assigned){
       return {"statusMsg":"Assigned asset to employee "+empid+" successfully","statusCode":200}
     }else{
