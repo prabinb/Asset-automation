@@ -12,3 +12,4 @@ twbs:bootstrap
 iron:router
 accounts-google
 routepolicy
+mrt:accounts-cas

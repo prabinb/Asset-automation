@@ -11,9 +11,9 @@ Template.caslogin.events({
 })
 Accounts.onLogin(function() {
     var user = Meteor.user();
-    var emailId = user.emails[0].address;
-//    console.log(emailId);
-     var role = Meteor.call('findRole', emailId, function(err, result){
+    var ldapId = user.profile.name;
+    //console.log(user);
+     var role = Meteor.call('findRole', ldapId, function(err, result){
          if (result) {
              Router.go(result);
          }else{
