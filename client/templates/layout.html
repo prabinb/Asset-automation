@@ -1,11 +1,15 @@
 <template name="layout">
-    <nav style="background-color: #abcdef" class="marginB15">
-      <img class="navbar-btn" src="/image/pramati-logo.png" style="width:150px;margin-left:1%">
-      <div class="marginL15 marginT15">
-        {{> caslogin}}
-      </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    Pramati Asset Automation Tool
+                </a>
+            </div>
+        </div>
     </nav>
-    <div class="marginL15">
-      {{> yield}}
+    <br>
+    <div class="container">
+        {{> yield}}
     </div>
 </template>
