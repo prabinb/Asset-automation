@@ -9,3 +9,11 @@ Meteor.publish("assetsDetails", function () {
 Meteor.publish("inventory", function () {
   return Inventory.find({});
 });
+
+Meteor.publish("roles", function(){
+  return Roles.find({});
+})
+
+Meteor.publish("role-per-user", function(email){
+  return Roles.findOne({email:email}).role;
+})

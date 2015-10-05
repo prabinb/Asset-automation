@@ -1,0 +1,15 @@
+{
+  "cas": {
+    "baseUrl": "https://cev3.pramati.com/cas/",
+    "service": "assetsauto",
+    "autoClose": true
+  },
+  "public": {
+    "cas": {
+      "loginUrl": "https://cev3.pramati.com/cas/login",
+      "serviceParam": "service",
+      "popupWidth": 810,
+      "popupHeight": 610
+    }
+  }
+}

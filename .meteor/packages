@@ -5,8 +5,10 @@
 # but you can also edit it by hand.
 
 meteor-platform
-iron:router@0.9.4
 accounts-ui
 accounts-password
 reactive-var
 twbs:bootstrap
+iron:router
+accounts-google
+routepolicy
