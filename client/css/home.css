@@ -150,3 +150,9 @@ option.modified{
     background:transparent;
 }
 /* end search css */
+
+
+ .style-login-button{
+   float:right;
+   margin-right:10%;
+ }
