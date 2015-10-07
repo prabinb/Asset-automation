@@ -3,10 +3,8 @@ Template.home.events({
     "click #loginButton" :function(event){
         event.preventDefault();
         Meteor.loginWithCas(function(err){
-
-            console.log(err);
-
-        })
+            console.log('err');
+        });
     }
 })
 Accounts.onLogin(function() {
