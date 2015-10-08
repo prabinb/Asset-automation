@@ -1,11 +1,11 @@
 <template name="securityHome">
   <ul class="nav nav-tabs">
    {{#each tabs}}
-     <li role="presentation"><a href="{{url}}" data-toggle="tab">{{header}}</a></li>
+     <li role="presentation" class="{{myclass}}" ><a href="{{url}}"  data-toggle="tab">{{header}}</a></li>
    {{/each}}
  </ul>
  <div class="tab-content marginT15">
-    <div class="tab-pane" id="assetFromVendorTab">
+    <div class="tab-pane active" id="assetFromVendorTab">
       {{> assetFromVendor}}
     </div>
      <div class="tab-pane" id="assetFromEmployeeTab">

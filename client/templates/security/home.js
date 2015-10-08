@@ -11,20 +11,25 @@ if (Meteor.isClient) {
   Template.securityHome.helpers({
     "tabs":[{
       header: "Asset from vendor",
-      url: "#assetFromVendorTab"
+      url: "#assetFromVendorTab",
+      myclass:"active"
     },{
       header: "Asset from employee",
-      url: "#assetFromEmployeeTab"
+      url: "#assetFromEmployeeTab",
+      myclass:""
     },{
       header: "Asset to employee",
-      url: "#assetToEmployeeTab"
+      url: "#assetToEmployeeTab",
+      myclass:""
     },{
       header: "Move to other location",
-      url: "#moveToOtherLocationTab"
+      url: "#moveToOtherLocationTab",
+      myclass:""
     },
     {
       header: "Procurement Order",
-      url: "#procurementOrder"
+      url: "#procurementOrder",
+      myclass:""
     }
   ]});
 

@@ -7,18 +7,23 @@ Template.adminHome.onCreated(function () {
 Template.adminHome.helpers({
     tabs: [{
       header: "Stock",
-      url: "#stockTab"
+      url: "#stockTab",
+      class: "active"
     },{
       header: "Verify Asset",
-      url: "#verifyAssetTab"
+      url: "#verifyAssetTab",
+      class: ""
     },{
       header: "Verify Asset Allocation",
-      url: "#verifyAssetAllocationTab"
+      url: "#verifyAssetAllocationTab",
+            class: ""
     },{
       header: "Asset in use",
-      url: "#assetUsageTab"
+      url: "#assetUsageTab",
+            class: ""
     },{
       header: "Decomission Asset",
-      url: "#decomissionAssetTab"
+      url: "#decomissionAssetTab",
+            class: ""
     }]
 });
