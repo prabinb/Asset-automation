@@ -123,10 +123,11 @@ Accounts.registerLoginHandler(function (options) {                              
     throw new Meteor.Error(Accounts.LoginCancelledError.numericError,                // 95
         'no matching login attempt found');                                            // 96
   }                                                                                  // 97
-                                                                                     // 98
+   // 98
   var result = _retrieveCredential(options.cas.credentialToken);                     // 99
-  var options = { profile: { name: result.id } };                                    // 100
-  var user = Accounts.updateOrCreateUserFromExternalService("cas", result, options); // 101
+  var serviceData = {id: result.id};
+  var options = { profile: result };
+  var user = Accounts.updateOrCreateUserFromExternalService("cas", serviceData, options); // 101
                                                                                      // 102
   return user;                                                                       // 103
 });                                                                                  // 104

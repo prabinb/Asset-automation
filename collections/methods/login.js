@@ -1,8 +1,8 @@
 Meteor.methods({
-    findRole:function(ldapId) {
-     console.log("ldapId: " + ldapId);
-        if (ldapId) {
-            var rollmapping = Roles.findOne({ldapId: ldapId});
+    findRole:function(email) {
+     //console.log("emailId: " + email);
+        if (email) {
+            var rollmapping = Roles.findOne({emailId: email});
             if (rollmapping != undefined) {
                 console.log(rollmapping.role);
                 //role.push(rollmapping.role);

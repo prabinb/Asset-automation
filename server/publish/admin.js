@@ -14,6 +14,7 @@ Meteor.publish("roles", function(){
   return Roles.find({});
 })
 
-Meteor.publish("role-per-user", function(email){
-  return Roles.findOne({email:email}).role;
+Meteor.publish("userData", function(id){
+  if (!this.userId) return this.ready();
+  return Meteor.users.find({_id:id}, {fields:{'profile.firstName':1, 'profile.lastName':1, 'profile.emailId':1}});
 })

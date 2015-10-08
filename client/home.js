@@ -9,14 +9,14 @@ Template.home.events({
 })
 Accounts.onLogin(function() {
     var user = Meteor.user();
-    var ldapId = user.profile.name;
+    console.log(user);
+    var email = user.profile.emailId;
     //console.log(user);
-    var role = Meteor.call('findRole', ldapId, function(err, result){
+    var role = Meteor.call('findRole', email, function(err, result){
         if (result) {
             Router.go(result);
         }else{
             Router.go('home');
         }
     });
-
 });
