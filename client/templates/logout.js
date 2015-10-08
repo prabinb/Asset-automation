@@ -3,6 +3,7 @@ Template.logout.events({
         event.preventDefault();
         Meteor.logout(function(){
             console.log('Logged out successfully');
+            Session.set("displayName","");
         });
     }
 })
