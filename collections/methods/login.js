@@ -1,5 +1,5 @@
 Meteor.methods({
-    findRole:function(email, callback) {
+    findRole:function(email) {
      //console.log("emailId: " + email);
         if (email) {
             var rollmapping = Roles.findOne({emailId: email});
