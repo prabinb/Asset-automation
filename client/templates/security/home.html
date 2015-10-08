@@ -1,24 +1,24 @@
 <template name="securityHome">
-  <ul class="nav nav-tabs">
-   {{#each tabs}}
-     <li role="presentation" class="{{myclass}}" ><a href="{{url}}"  data-toggle="tab">{{header}}</a></li>
-   {{/each}}
- </ul>
- <div class="tab-content marginT15">
-    <div class="tab-pane active" id="assetFromVendorTab">
-      {{> assetFromVendor}}
+    <ul class="nav nav-tabs">
+        {{#each tabs}}
+            <li role="presentation" class="{{myclass}}" ><a href="{{url}}"  data-toggle="tab">{{header}}</a></li>
+        {{/each}}
+    </ul>
+    <div class="tab-content marginT15">
+        <div class="tab-pane active" id="assetFromVendorTab">
+            {{> assetFromVendor}}
+        </div>
+        <div class="tab-pane" id="assetFromEmployeeTab">
+            {{> assetFromEmployee}}
+        </div>
+        <div class="tab-pane" id="assetToEmployeeTab">
+            {{> assetToEmployee}}
+        </div>
+        <div class="tab-pane" id="moveToOtherLocationTab">
+            {{> moveToOtherLocation}}
+        </div>
+        <div class="tab-pane" id="procurementOrder">
+            {{> PO}}
+        </div>
     </div>
-     <div class="tab-pane" id="assetFromEmployeeTab">
-      {{> assetFromEmployee}}
-    </div>
-    <div class="tab-pane" id="assetToEmployeeTab">
-       {{> assetToEmployee}}
-     </div>
-     <div class="tab-pane" id="moveToOtherLocationTab">
-       {{> moveToOtherLocation}}
-     </div>
-     <div class="tab-pane" id="procurementOrder">
-       {{> PO}}
-     </div>
- </div>
 </template>

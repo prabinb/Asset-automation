@@ -1,7 +1,7 @@
 <template name="adminHome">
    <ul class="nav nav-tabs marginB15">
     {{#each tabs}}
-      <li role="presentation"><a href="{{url}}" class=""  data-toggle="tab">{{header}}</a></li>
+      <li role="presentation"  class="{{class}}"><a href="{{url}}" data-toggle="tab">{{header}}</a></li>
     {{/each}}
   </ul>
   <div class="tab-content marginB15">
