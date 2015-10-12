@@ -4,9 +4,7 @@ var _ = Package.underscore._;
 
 
 Meteor.loginWithCas = function(callback) {
-
     var credentialToken = Random.id();
-
     if (!Meteor.settings.public &&
         !Meteor.settings.public.cas &&
         !Meteor.settings.public.cas.loginUrl) {

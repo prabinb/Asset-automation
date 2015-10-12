@@ -10,7 +10,6 @@ accounts-password
 reactive-var
 twbs:bootstrap
 iron:router
-accounts-google
 routepolicy
 meteorhacks:npm
 

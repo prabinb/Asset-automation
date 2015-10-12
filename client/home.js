@@ -1,18 +1,15 @@
-Meteor.subscribe("roles");
 Template.home.events({
     "click #loginButton" :function(event){
         event.preventDefault();
         Meteor.loginWithCas(function(err){
-            console.log('err');
+            if (err) console.log(err);
         });
     }
 })
 Accounts.onLogin(function() {
     var user = Meteor.user();
-    console.log(user);
     var email = user.profile.emailId;
-    //console.log(user);
-    var role = Meteor.call('findRole', email, function(err, result){
+    Meteor.call('findRole', email, function(err, result){
         if (result) {
             Router.go(result);
         }else{
@@ -20,8 +17,8 @@ Accounts.onLogin(function() {
         }
     });
     if(Meteor.userId()){
-  	   Meteor.call("getUserInfo",Meteor.userId(),function(e,r){
-  	     Session.set("displayName", r.profile.firstName +" "+r.profile.lastName);
-  	   });
-  	}
+        Meteor.call("getUserInfo",Meteor.userId(),function(e,r){
+            Session.set("displayName", r.profile.firstName +" "+r.profile.lastName);
+        });
+    }
 });

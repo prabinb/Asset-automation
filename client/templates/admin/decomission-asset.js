@@ -31,8 +31,8 @@
               type: asset.type,
               make: asset.make,
               model:asset.model,
-              serialno: asset.serialno,
-              assetdetails: inventoryItem.assetdetails
+              serialno: asset.serialno
+             // assetdetails: inventoryItem.assetdetails
             });
           }
         });

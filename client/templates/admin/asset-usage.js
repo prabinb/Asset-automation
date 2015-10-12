@@ -12,7 +12,7 @@ Template.assetUsage.helpers({
           model:asset.model,
           serialno: asset.serialno,
           assetdetails: inventoryItem.assetdetails,
-          emailid: "LDAP",
+          empid: inventoryItem.empid,
           project: "LDAP",
           manager: "LDAP"
         });
