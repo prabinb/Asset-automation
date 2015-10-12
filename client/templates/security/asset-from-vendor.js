@@ -71,7 +71,7 @@ Template.assetFromVendor.events({
     newObj.description = itemSelected.make + " " +itemSelected.model;
 
     items.push(newObj);
-
+    var user = Meteor.user();
     var assetObj = {
       "type": itemSelected.type,
       "make": itemSelected.make,
@@ -87,7 +87,7 @@ Template.assetFromVendor.events({
       "verified": false
     }
 
-    Meteor.call("addInAsset", assetObj, procuredAssetObj,remaining_qty-1, function(error, result){
+    Meteor.call("addInAsset", assetObj, procuredAssetObj,remaining_qty-1,user.profile.empId, function(error, result){
       if(error){
         console.log("error", error);
       }

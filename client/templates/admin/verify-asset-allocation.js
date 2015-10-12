@@ -24,10 +24,11 @@ Template.verifyAssetAllocation.events({
   'click #btn-verify-allocation': function(event, template){
     var assetAllocationRequests = template.view.template.__helpers[" assets"]();
     var verifyIds = [];
+    var user = Meteor.user();
     assetAllocationRequests.forEach(function(assetAllocationRequest){
       verifyIds.push(assetAllocationRequest._id);
     });
-    Meteor.call("verifyAssetAllocationRequests", verifyIds);
+    Meteor.call("verifyAssetAllocationRequests", verifyIds,user.profile.empId);
   },
   'click .verify-allocation-btn' : function(){
     Meteor.call("verifyAssetAllocationRequests", [this._id]);

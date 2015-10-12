@@ -1,5 +1,5 @@
 Meteor.methods({
-  verifyAssetVerificationRequests: function (assetProcuredIds) {
+  verifyAssetVerificationRequests: function (assetProcuredIds,userId) {
     assetProcuredIds.forEach(function(procuredId){
       var assetProcuredItem = AssetsProcured.findOne({_id: procuredId});
       var assetId = assetProcuredItem.asset_id;
@@ -12,19 +12,19 @@ Meteor.methods({
       Inventory.insert(inventory);
       // update approve status
       AssetsProcured.update({_id: procuredId},{$set: {"verified": true}});
-
+      
       //update in history
       History.insert({
         "asset_id": assetId,
         "date": new Date(),
-        "owner": "admin",
-        "emp_id": null,
+        "action_taken_by": "admin",
+        "emp_id": userId,
         "comments": "verified asset"
       });
 
     });
   },
-  verifyAssetAllocationRequests: function(inventoryIds){
+  verifyAssetAllocationRequests: function(inventoryIds,userId){
     inventoryIds.forEach(function(inventoryId){
       Inventory.update({_id: inventoryId},{$set: {
         assetstate: "Allocated"
@@ -32,31 +32,31 @@ Meteor.methods({
 
 
       var asset = Inventory.findOne({_id:inventoryId});
-      var assetId = asset._id;
+      var assetId = asset.asset_id;
       //update in history
       History.insert({
         "asset_id": assetId,
         "date": new Date(),
-        "owner": "admin",
-        "emp_id": asset.empid,
+        "action_taken_by": "admin",
+        "emp_id": userId,
         "comments": "verified asset allocation"
       });
 
     });
   },
-  assetDecommission: function(inventoryId){
+  assetDecommission: function(inventoryId,userId){
     Inventory.update({_id: inventoryId},{$set: {
       assetstate: "Decommissioned"
     }});
 
     var asset = Inventory.findOne({_id:inventoryId});
-    var assetId = asset.id;
+    var assetId = asset.asset_id;
     //update in history
     History.insert({
       "asset_id": assetId,
       "date": new Date(),
-      "owner": "admin",
-      "emp_id": null,
+      "action_taken_by": "admin",
+      "emp_id": userId,
       "comments": "decommissioned asset"
     });
   }

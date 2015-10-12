@@ -9,7 +9,7 @@ var AssetObj = function(options){
 }
 
 Meteor.methods({
-  addInAsset:function(assetObj,assetProcuredObj,remaining_qty){
+  addInAsset:function(assetObj,assetProcuredObj,remaining_qty,userId){
      // adding the asset object in DB
      var assetId = AssetsDetails.insert(assetObj);
 
@@ -26,8 +26,8 @@ Meteor.methods({
      History.insert({
        "asset_id": assetProcuredId,
        "date": new Date(),
-       "owner": "security",
-       "emp_id": null,
+       "action_taken_by": "security",
+       "emp_id": userId,
        "comments": "added in asset by security"
      });
 
@@ -60,17 +60,18 @@ Meteor.methods({
                    }), true);
     return results;
   },
-  assignAssetToEmployee: function(empid,inventory_id){
+  assignAssetToEmployee: function(empid,inventory_id,userId){
+	var asset = Inventory.findOne({_id:inventory_id});
     var assigned = Inventory.update({"_id": inventory_id}, {"$set": {"empid": empid,"assetstate": "Security"}});
 
-    // //update in history
-    // History.insert({
-    //   "asset_id": asset.asset_id,
-    //   "date": new Date(),
-    //   "owner": "security",
-    //   "emp_id": null,
-    //   "comments": "assigned asset to employee"
-    // });
+     //update in history
+     History.insert({
+       "asset_id": asset.asset_id,
+       "date": new Date(),
+       "action_taken_by": "security",
+       "emp_id": userId,
+       "comments": "assigned asset to employee"
+     });
 
     if(assigned){
       return {"statusMsg":"Assigned asset to employee "+empid+" successfully","statusCode":200}
@@ -91,12 +92,22 @@ Meteor.methods({
 
     return assetsOfEmployee;
   },
-  deallocateAsset: function(inventory_id){
+  deallocateAsset: function(inventory_id,userId){
+	var asset = Inventory.find({"_id":inventory_id});
     var res = Inventory.update({"_id":inventory_id},{"$set": {"empid": null,"assetstate": "Inventory"}});
     if(res){
       return {"statusMsg":"Item deallocated successfully"};
     }else{
       return {"statusMsg":"There was some error. Please try again"};
     }
+    
+  //update in history
+    History.insert({
+      "asset_id": asset.asset_id,
+      "date": new Date(),
+      "action_taken_by": "security",
+      "emp_id": userId,
+      "comments": "asset taken from employee"
+    });
   }
 });

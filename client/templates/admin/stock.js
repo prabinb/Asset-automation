@@ -45,7 +45,8 @@
         Template.instance().searchCriteria.set(searchCriteriaObj.buildSearchCriteria());
       },
       'click .btn-decommission': function(){
-        Meteor.call("assetDecommission", this._id);
+    	var user = Meteor.user();
+        Meteor.call("assetDecommission", this._id,user.profile.empId);
       }
     };
   })();
