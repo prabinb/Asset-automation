@@ -58,7 +58,7 @@
     },
     'click #return-btn' :function(event){
       event.preventDefault();
-      var comment = $('#comment').val();
+      var comment = $('.open textarea#comment').val();
       if(!comment){
         alert('Comment cannot be empty!');
       }else{
