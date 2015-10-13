@@ -109,5 +109,79 @@ Meteor.methods({
       "emp_id": userId,
       "comments": "asset taken from employee"
     });
+  },
+  getMarkedAssets: function(){
+	  var markedAssets = [];
+	  Inventory.find({"assetstate":"markedforallocation"}).forEach(function(asset,index){
+	      var res = AssetsDetails.findOne({"_id":asset.asset_id});
+	      res.inventory_id = asset._id;
+	      res.empid = asset.empid;
+	      if(res){
+	    	  markedAssets.push(res);
+	      }
+	    });
+	  return markedAssets;
+  },
+  assignAssetBySecurity: function(inventory_id,userId){
+	  var asset = Inventory.findOne({_id:inventory_id});
+	  var assetId = asset.asset_id;
+	    
+	  Inventory.update({_id:inventory_id},{$set:{
+		assetstate: "giventoemployee"
+	  }});
+	
+	
+	
+	//update in history
+    History.insert({
+      "asset_id": assetId,
+      "date": new Date(),
+      "action_taken_by": "security",
+      "emp_id": userId,
+      "comments": "asset given to employee"
+    });
+  },
+  getAssetsToBeConfirmed : function(empid){
+	  var toBeConfirmed = [];
+	  Inventory.find({"assetstate":"giventoemployee","empid":empid}).forEach(function(asset,index){
+		  var res = AssetsDetails.findOne({"_id":asset.asset_id});
+	      res.inventory_id = asset._id;
+	      if(res){
+	    	  toBeConfirmed.push(res);
+	      }
+	  });
+	  
+	  return toBeConfirmed;
+  },
+  acknowledgeAsset : function(inventory_id,userId){
+	  var asset = Inventory.findOne({_id:inventory_id});
+	  var assetId = asset.asset_id;
+	    
+	  Inventory.update({_id:inventory_id},{$set:{
+		assetstate: "acknowledgedbyemployee"
+	  }});
+	
+	
+	
+	//update in history
+    History.insert({
+      "asset_id": assetId,
+      "date": new Date(),
+      "action_taken_by": "employee",
+      "emp_id": userId,
+      "comments": "asset acknowledged by employee"
+    });
+  },
+  getAssetsOfEmployee: function(empid){
+	  var assets = [];
+	  Inventory.find({"assetstate":"acknowledgedbyemployee","empid":empid}).forEach(function(asset,index){
+		  var res = AssetsDetails.findOne({"_id":asset.asset_id});
+	      res.inventory_id = asset._id;
+	      if(res){
+	    	  assets.push(res);
+	      }
+	  });
+	  
+	  return assets;
   }
 });

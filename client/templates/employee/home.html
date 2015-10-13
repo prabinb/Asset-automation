@@ -1,5 +1,15 @@
 <template name="employeeHome">
-  <p>
-    Employee Home Page
-  </p>
+    <ul class="nav nav-tabs">
+        {{#each tabs}}
+            <li role="presentation" class="{{myclass}}" ><a href="{{url}}"  data-toggle="tab">{{header}}</a></li>
+        {{/each}}
+    </ul>
+    <div class="tab-content marginT15">
+       	<div class="tab-pane active" id="assetsTab">
+            {{> assets}}
+        </div>
+         <div class="tab-pane" id="confirmAsssignedAssetsTab">
+            {{> confirmAssignedAsset}}
+        </div>
+    </div>
 </template>
