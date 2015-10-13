@@ -11,7 +11,7 @@ Meteor.methods({
       };
       Inventory.insert(inventory);
       // update approve status
-      AssetsProcured.update({_id: procuredId},{$set: {"verified": true}});
+      AssetsProcured.update({_id: procuredId},{$set: {"state": "addedtoinventory"}});
       
       //update in history
       History.insert({
@@ -23,6 +23,10 @@ Meteor.methods({
       });
 
     });
+  },
+  returnAssetToVendor:function(assetProcuredId, userId, comment){
+    var assetProcuredItem = AssetsProcured.findOne({_id: assetProcuredId});
+    AssetsProcured.update({_id: assetProcuredId}, {$set:{"state":"markedforreturn", "comment":comment}});
   },
   verifyAssetAllocationRequests: function(inventoryIds,userId){
     inventoryIds.forEach(function(inventoryId){

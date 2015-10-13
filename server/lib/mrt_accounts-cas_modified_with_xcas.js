@@ -46,7 +46,6 @@ middleware = function (req, res, next) {                                        
       closePopup(res);                                                               // 35
       return;                                                                        // 36
     }                                                                                // 37
-                                                                                     // 38
     // validate ticket                                                               // 39
     casTicket(req, credentialToken, function() {                                     // 40
       closePopup(res);                                                               // 41
@@ -57,7 +56,7 @@ middleware = function (req, res, next) {                                        
     closePopup(res);                                                                 // 46
   }                                                                                  // 47
 };                                                                                   // 48
-var auth = function(req, res){
+/*var auth = function(req, res){
   cas.authenticate(req, res, function(err, status, username, extended) {
     if (err) {
       // Handle the error
@@ -67,7 +66,7 @@ var auth = function(req, res){
       res.send({status: status, username: username, attributes: extended.attributes});
     }
   });
-}   ;                                                                             // 49
+}   ;*/                                                                             // 49
 var casTicket = function (req, token, callback) {                                    // 50
   // get configuration                                                               // 51
   if (!Meteor.settings.cas && !Meteor.settings.cas.validate) {                       // 52

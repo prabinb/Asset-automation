@@ -84,7 +84,7 @@ Template.assetFromVendor.events({
       "supplier": itemSelected.supplier,
       "deliverychallan": newObj.deliverychallan,
       "comment": "",
-      "verified": false
+      "state": "addedforverification"
     }
 
     Meteor.call("addInAsset", assetObj, procuredAssetObj,remaining_qty-1,user.profile.empId, function(error, result){

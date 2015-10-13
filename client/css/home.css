@@ -1,4 +1,8 @@
 /* common css */
+#returnForm .form-group{
+    width: auto !important;
+}
+
 .marginB15{
   margin-bottom: 15px;
 }
@@ -156,3 +160,4 @@ option.modified{
    float:right;
    margin-right:10%;
  }
+
