@@ -35,7 +35,8 @@
       <div class="col-md-2 data-grid-column">CPU Type</div>
       <div class="col-md-1 data-grid-column">Memory</div>
       <div class="col-md-1 data-grid-column">Disk Size(MB)</div>
-      <div class="col-md-1 data-grid-column"></div>
+      <div class="col-md-1 data-grid-column">Decommision</div>
+      <div class="col-md-1 data-grid-column">Allocate</div>
     </div>
     {{#each assets}}
     <div class="row data-grid-row">
@@ -53,6 +54,9 @@
       <div class="col-md-1 data-grid-column">
         <button type="button" class="btn btn-danger btn-decommission">Decommission</button>
       </div>
+      <div class="col-md-1 data-grid-column">
+        <button type="button" class="btn btn-primary open-allocate-modal"  data-toggle="modal" data-target="#allocateModal">Allocate</button>
+      </div>
     </div>
     {{/each}}
   </div>
@@ -61,4 +65,24 @@
     We don't have any asset in stock.
   </p>
   {{/if}}
+  
+  
+    <!-- Modal -->
+  <div class="modal fade" id="allocateModal" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Allocate To Employee</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="allocateEmpId" placeholder="Employee Id">
+        </div>
+        <div class="modal-footer">
+          <button id="allocate-asset-to-emp" type="button" class="btn btn-primary  btn-allocate" data-dismiss="modal" disabled="{{disableConfirmAllocate}}">Confirm</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

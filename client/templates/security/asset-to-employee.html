@@ -5,41 +5,37 @@
         <div class="success"><i class="fa fa-check"></i>{{this}}</div>
       {{/each}}
     {{/if}}
-    <div class="row">
-      <div class="form-group">
-        <label>
-          Type
-        </label>
-        <select id="type-select" class="form-control" required>
-            <option class="modified" disabled="disabled" selected="selected">Select Type</option>
-            {{#each type}}
-                <option class="modified" value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-      </div>
+      <div class="row">
+      <div class="data-grid container-fluid marginT2per">
+        {{#if markedAssets.length}}
+        <div class="row data-grid-header">
+          <div class="col-md-2 data-grid-column">Emp Id</div>
+          <div class="col-md-2 data-grid-column">Type</div>
+          <div class="col-md-2 data-grid-column">Make</div>
+          <div class="col-md-2 data-grid-column">Model</div>
+          <div class="col-md-2 data-grid-column">Serial Number</div>
+          <div class="col-md-2 data-grid-column">Action</div>
+        </div>
+        {{#each markedAssets}}
+        <div class="row data-grid-row">
 
-      <div class="form-group">
-        <label >Serial Number</label>
-        <select id="serial-number-select" class="form-control" disabled="{{apple}}" required>
-            <option disabled="disabled" selected="selected">Select Serial Number</option>
-            {{#each serialNumberList}}
-                <option value="{{serialno}}">{{serialno}}</option>
-            {{/each}}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>
-          Emp Id
-        </label>
-        <input class="form-control" type="text" id="empid" required>
-      </div>
+          <div class="col-md-2 data-grid-column">{{empid}}</div>
+          <div class="col-md-2 data-grid-column">{{type}}</div>
+          <div class="col-md-2 data-grid-column">{{make}}</div>
+          <div class="col-md-2 data-grid-column">{{model}}</div>
+          <div class="col-md-2 data-grid-column">{{serialno}}</div>
+          <div class="col-md-2 data-grid-column">
+	          <button class="btn btn-primary security-assign" type="button" data-toggle="modal" data-target="#confirmModal" disabled="{{disableAssign}}">
+	           Assign
+	          </button>
+	      </div>
 
-    <div class="form-group">
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirmModal" disabled="{{disableAssign}}">
-        Assign
-        </button>
+        </div>
+        {{/each}}
+        {{/if}}
       </div>
     </div>
+
 
     <!-- Modal -->
   <div class="modal fade" id="confirmModal" role="dialog">
@@ -53,7 +49,7 @@
           <p>Are you sure you want to assign.</p>
         </div>
         <div class="modal-footer">
-          <button id="assign-asset-to-emp" type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+          <button id="give-asset-to-emp" type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

@@ -12,6 +12,8 @@
 
     Template.stock.onCreated(function() {
       this.searchCriteria = new ReactiveVar(searchCriteriaObj.buildSearchCriteria());
+      this.disableConfirmAllocate = new ReactiveVar(true);
+      this.selectedInventoryId = new ReactiveVar(null);
     });
 
     Template.stock.helpers({
@@ -37,6 +39,12 @@
           }
         });
         return stock;
+      },
+      disableConfirmAllocate: function(){
+    	  return Template.instance().disableConfirmAllocate.get();
+      },
+      selectedInventoryId: function(){
+    	  return Template.instance().selectedInventoryId.get();
       }
     });
 
@@ -47,6 +55,24 @@
       'click .btn-decommission': function(){
     	var user = Meteor.user();
         Meteor.call("assetDecommission", this._id,user.profile.empId);
+      },
+      'click .btn-allocate': function(event,template){
+        var user = Meteor.user();
+        var allocatedToUser = $("#allocateEmpId").val();
+        console.log(allocatedToUser);
+    	Meteor.call("assetAllocationToEmp",template.selectedInventoryId.get(),allocatedToUser, user.profile.empId,function(err,result){
+    		console.log(result);
+    	});
+      },
+      'keyup #allocateEmpId': function(event,template){
+    	  if(event.target.value){
+    		  template.disableConfirmAllocate.set(false);
+    	  }else{
+    		  template.disableConfirmAllocate.set(true);
+    	  }
+      },
+      "click .open-allocate-modal": function(event,template){
+    	  template.selectedInventoryId.set(this._id);
       }
     };
   })();

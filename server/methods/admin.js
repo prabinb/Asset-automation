@@ -59,5 +59,25 @@ Meteor.methods({
       "emp_id": userId,
       "comments": "decommissioned asset"
     });
+  },
+  assetAllocationToEmp: function(inventoryId,empId,userId){
+	  var asset = Inventory.findOne({_id:inventoryId});
+	  var assetId = asset.asset_id;
+	    
+	  Inventory.update({_id:inventoryId},{$set:{
+		assetstate: "markedforallocation",
+		"empid":empId
+	  }});
+	
+	
+	
+	//update in history
+    History.insert({
+      "asset_id": assetId,
+      "date": new Date(),
+      "action_taken_by": "admin",
+      "emp_id": userId,
+      "comments": "asset marked for allocation"
+    });
   }
 });
