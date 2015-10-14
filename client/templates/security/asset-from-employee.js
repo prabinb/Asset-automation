@@ -27,11 +27,10 @@ Template.assetFromEmployee.events({
   },
   "click #return-asset": function(event, template){
     template.selectedInventoryId.set(this.inventory_id);
-    console.log(this.inventory_id);
   },
   "click #return-asset-confirm": function(event,template){
     var inventory_id = template.selectedInventoryId.get();
-    Meteor.call("deallocateAsset",inventory_id,function(error,result){
+    Meteor.call("returnToSecurity",inventory_id,function(error,result){
       console.log(result);
       searchEmployee(event,template);
     });

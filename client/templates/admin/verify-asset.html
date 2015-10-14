@@ -66,6 +66,34 @@
         </p>
     {{/if}}
 
+	{{#if returnedAssets.length}}
+	<h3>Return Requests</h3>
+        <div class="container-fluid data-grid">
+            <div class="row data-grid-header">
+                <div class="srno-column data-grid-column">Sr No.</div>
+                <div class="col-md-2 data-grid-column">PO Number</div>
+                <div class="col-md-2 data-grid-column">Supplier</div>
+                <div class="col-md-2 data-grid-column">Device Serial Number</div>
+                <div class="col-md-2 data-grid-column">Delivery Challan</div>
+                <div class="col-md-2 data-grid-column">Description</div>
+                <div class="col-md-2 data-grid-column">Action</div>
+            </div>
+            {{#each returnedAssets}}
+                <div class="row data-grid-row">
+                    <div class="srno-column data-grid-column">{{srno}}</div>
+                    <div class="col-md-2 data-grid-column">{{ponumber}}</div>
+                    <div class="col-md-2 data-grid-column">{{supplier}}</div>
+                    <div class="col-md-2 data-grid-column">{{serialno}}</div>
+                    <div class="col-md-2 data-grid-column">{{deliverychallan}}</div>
+                    <div class="col-md-2 data-grid-column">{{description}}</div>
+                    <div class="col-md-2 data-grid-column">
+                        <button type="button" class="btn btn-success verify-returned-asset">Verify Returned Asset</button>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        
+     {{/if}}
     <!--Modal-->
     <!--div id="returnModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

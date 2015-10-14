@@ -14,6 +14,7 @@
       this.searchCriteria = new ReactiveVar(searchCriteriaObj.buildSearchCriteria());
       this.disableConfirmAllocate = new ReactiveVar(true);
       this.selectedInventoryId = new ReactiveVar(null);
+      this.showHistory = new ReactiveVar(false);
     });
 
     Template.stock.helpers({
@@ -34,7 +35,8 @@
               make: asset.make,
               model:asset.model,
               serialno: asset.serialno,
-              assetdetails: inventoryItem.assetdetails
+              assetdetails: inventoryItem.assetdetails,
+              asset_id: inventoryItem.asset_id
             });
           }
         });
@@ -45,6 +47,9 @@
       },
       selectedInventoryId: function(){
     	  return Template.instance().selectedInventoryId.get();
+      },
+      showHistory: function(){
+    	  return Template.instance().showHistory.get();
       }
     });
 
@@ -73,6 +78,13 @@
       },
       "click .open-allocate-modal": function(event,template){
     	  template.selectedInventoryId.set(this._id);
+      },
+      "click .open-history": function(event, template){
+    	  var assetId = this.asset_id;
+    	  Session.set("assetForHistory",assetId);
+    	  template.showHistory.set(true);
+    	  
+    	  console.log(assetId);
       }
     };
   })();

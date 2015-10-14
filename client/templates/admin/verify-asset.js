@@ -12,6 +12,9 @@
 
   Template.verifyAsset.onCreated(function() {
     this.searchCriteria = new ReactiveVar(searchCriteriaObj.buildSearchCriteria());
+    this.returnedAssets = new ReactiveVar([]);
+    
+    this.returnedAssets = getReturnedAssets();
   });
 
   Template.verifyAsset.helpers({
@@ -37,7 +40,11 @@
           });
         }
       });
+      
       return verificationRequests;
+    },
+    returnedAssets: function(){
+    	return getReturnedAssets();
     }
   });
 
@@ -64,6 +71,33 @@
       }else{
         Meteor.call("returnAssetToVendor", this._id, null, comment);
       }
+    },
+    "click .verify-returned-asset": function(event,template){
+    	var user = Meteor.user();
+    	Meteor.call("finalizeReturn",this.inventory_id,user.profile.empId,function(err,result){
+    		getReturnedAssets();
+    	});
     }
   });
+  
+  function getReturnedAssets(){
+	  var returnedRequests = [];
+      Inventory.find({"assetstate":"giventosecurity"}).forEach(function(inventory,index){
+        var asset = AssetsDetails.findOne({"_id":inventory.asset_id});
+        var AssetsProcuredItem = AssetsProcured.findOne({"asset_id":inventory.asset_id});
+        
+        
+    	  returnedRequests.push({
+    		inventory_id: inventory._id,
+          srno: index + 1,
+          ponumber: AssetsProcuredItem.ponumber,
+          supplier: AssetsProcuredItem.supplier,
+          deliverychallan: AssetsProcuredItem.deliverychallan,
+          serialno: asset.serialno,
+          description: asset.make + " " + asset.model
+    	  });
+      });
+      
+      return returnedRequests;
+  }
 })();

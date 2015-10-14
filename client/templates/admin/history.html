@@ -1,0 +1,24 @@
+<template name="history">
+	{{#if history.length}}
+      <div class="data-grid container marginT2per">
+        <div class="row data-grid-header">
+          <div class="col-md-1 data-grid-column">Index</div>
+          <div class="col-md-2 data-grid-column">Asset Id</div>
+          <div class="col-md-1 data-grid-column">Action Taken By</div>
+          <div class="col-md-3 data-grid-column">Date</div>
+          <div class="col-md-2 data-grid-column">Emp Id</div>
+          <div class="col-md-3 data-grid-column">Comment</div>
+        </div>
+        {{#each history}}
+        <div class="row data-grid-row">
+          <div class="col-md-1 data-grid-column">{{index}}</div>
+          <div class="col-md-2 data-grid-column">{{asset_id}}</div>
+          <div class="col-md-1 data-grid-column">{{action_taken_by}}</div>
+          <div class="col-md-3 data-grid-column">{{date}}</div>
+          <div class="col-md-2 data-grid-column">{{emp_id}}</div>
+          <div class="col-md-3 data-grid-column">{{comments}}</div>
+		</div>
+        {{/each}}
+       </div>
+       {{/if}}
+</template>

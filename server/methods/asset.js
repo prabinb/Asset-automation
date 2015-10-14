@@ -187,9 +187,36 @@ Meteor.methods({
   fetchHistory: function(assetId){
 	  var history = [];
 	  History.find({"asset_id":assetId}).forEach(function(historyItem,index){
+		  historyItem.index = index+1;
 		  history.push(historyItem);
 	  });
 	  
 	  return history;
+  },
+  returnToSecurity: function(inventory_id,userId){
+	  var asset = Inventory.find({"_id":inventory_id});
+	  Inventory.update({"_id":inventory_id},{"$set": {"assetstate": "giventosecurity"}});
+	    
+	  //update in history
+	    History.insert({
+	      "asset_id": asset.asset_id,
+	      "date": new Date(),
+	      "action_taken_by": "security",
+	      "emp_id": userId,
+	      "comments": "asset given to security"
+	    });
+  },
+  finalizeReturn: function(inventory_id,userId){
+	  var asset = Inventory.find({"_id":inventory_id});
+	  Inventory.update({"_id":inventory_id},{"$set": {"assetstate": "Inventory","empid":null}});
+	    
+	  //update in history
+	    History.insert({
+	      "asset_id": asset.asset_id,
+	      "date": new Date(),
+	      "action_taken_by": "admin",
+	      "emp_id": userId,
+	      "comments": "asset returned to inventory"
+	    });
   }
 });

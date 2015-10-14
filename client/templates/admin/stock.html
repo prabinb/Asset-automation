@@ -40,7 +40,7 @@
     </div>
     {{#each assets}}
     <div class="row data-grid-row">
-      <div class="srno-column data-grid-column">{{srno}}</div>
+      <div class="srno-column data-grid-column"><i class="glyphicon glyphicon-eye-open open-history" style="margin-right:10px"></i>{{srno}}</div>
       <div class="col-md-1 data-grid-column">{{type}}</div>
       <div class="col-md-1 data-grid-column">{{make}}</div>
       <div class="col-md-1 data-grid-column">{{model}}</div>
@@ -59,14 +59,19 @@
       </div>
     </div>
     {{/each}}
+    
   </div>
   {{else}}
   <p>
     We don't have any asset in stock.
   </p>
   {{/if}}
-  
-  
+  <div class="container-fluid data-grid">
+  {{#if showHistory}}
+  <h3>History</h3>
+    	{{> history}}
+    {{/if}}
+  </div>
     <!-- Modal -->
   <div class="modal fade" id="allocateModal" role="dialog">
     <div class="modal-dialog modal-md">
