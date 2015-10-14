@@ -40,17 +40,10 @@ Template.assetFromEmployee.events({
 
 function searchEmployee(event, template){
   var value = $("#searchEmployee").val();
-
-  //if(template.currentEmployee.get() !== value){
-
-    //set the current Employee value
-    template.currentEmployee.set(value);
-
-   Meteor.call("searchAssetsByEmployee",value,function(error, result){
+  //set the current Employee value
+  template.currentEmployee.set(value);
+  Meteor.call("getAssetsOfEmployee",value,function(error, result){
      console.log(result);
      template.assetsOfEmployee.set(result);
-   })
-
-
-  //}
+  });
 }

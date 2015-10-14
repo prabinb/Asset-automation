@@ -183,5 +183,13 @@ Meteor.methods({
 	  });
 	  
 	  return assets;
+  },
+  fetchHistory: function(assetId){
+	  var history = [];
+	  History.find({"asset_id":assetId}).forEach(function(historyItem,index){
+		  history.push(historyItem);
+	  });
+	  
+	  return history;
   }
 });

@@ -14,10 +14,6 @@ Template.adminHome.helpers({
         url: "#verifyAssetTab",
         class: ""
     },{
-        header: "Verify Asset Allocation",
-        url: "#verifyAssetAllocationTab",
-        class: ""
-    },{
         header: "Asset in use",
         url: "#assetUsageTab",
         class: ""

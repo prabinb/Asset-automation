@@ -1,7 +1,7 @@
 Template.assetUsage.helpers({
   assets: function(){
     var allocationRequests = [];
-    Inventory.find({assetstate: 'Allocated'}).forEach(function(inventoryItem, index){
+    Inventory.find({assetstate: 'acknowledgedbyemployee'}).forEach(function(inventoryItem, index){
       var asset = AssetsDetails.findOne({_id: inventoryItem.asset_id});
       if(asset){
         allocationRequests.push({
