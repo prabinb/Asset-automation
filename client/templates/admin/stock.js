@@ -84,7 +84,9 @@
     	  var assetId = this.asset_id;
     	  Session.set("assetForHistory",assetId);
     	  template.showHistory.set(true);
-    	  
+    	  //$('#history').html(UI.render(Template.history));
+    	  $('#history').html("");
+    	  UI.insert(UI.render(Template.history),$('#history').get(0));
     	  console.log(assetId);
       }
     };
