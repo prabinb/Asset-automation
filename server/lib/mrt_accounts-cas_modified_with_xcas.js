@@ -127,7 +127,7 @@ Accounts.registerLoginHandler(function (options) {                              
   var serviceData = {id: result.id};
   var options = { profile: result };
   var user = Accounts.updateOrCreateUserFromExternalService("cas", serviceData, options); // 101
-                                                                                     // 102
+  serverMessages.notify('serverMessages.info', 'Welcome', 'Welcome new user');                                           // 102
   return user;                                                                       // 103
 });                                                                                  // 104
                                                                                      // 105

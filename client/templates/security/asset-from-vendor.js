@@ -95,6 +95,8 @@ Template.assetFromVendor.events({
         console.log(result);
       }
     });
+    Meteor.call("sendEmail", user.profile.emailId, "admin", "Received new stock",
+        "New stock has been received, with reference to PO number: "+ itemSelected.ponumber+" delivery challan: "+ newObj.deliverychallan + " from " + itemSelected.supplier);
     template.newItems.set(items);
 
     $("#serialNumber").val("");

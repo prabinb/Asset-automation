@@ -68,6 +68,7 @@
     	Meteor.call("assetAllocationToEmp",template.selectedInventoryId.get(),allocatedToUser, user.profile.empId,function(err,result){
     		console.log(result);
     	});
+        Meteor.call("sendEmail", user.profile.emailId, "security", "Asset allocated", "An asset has been allocated to employee, id: "+ allocatedToUser);
       },
       'keyup #allocateEmpId': function(event,template){
     	  if(event.target.value){

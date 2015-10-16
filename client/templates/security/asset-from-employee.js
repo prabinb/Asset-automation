@@ -34,6 +34,8 @@ Template.assetFromEmployee.events({
       console.log(result);
       searchEmployee(event,template);
     });
+    Meteor.call("sendEmail", user.profile.emailId, "admin", "Received asset from employee" ,
+        "Received an asset from employee, id: "+templates.currentEmployee.get());
   }
 });
 

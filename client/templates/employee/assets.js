@@ -48,5 +48,7 @@ Template.assets.events({
 				  
 			  });
 		})
+		Meteor.call("sendEmail", user.profile.emailId, "admin", "Employee acknowledgment" ,"Assets received.");
 	}
+
 });
